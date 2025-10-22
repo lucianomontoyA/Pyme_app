@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['rol'] = $usuario['rol'];
         $_SESSION['nombre'] = $usuario['nombre'];
 
-        // Redirigir según rol (ejemplo)
         header("Location: /index.php");
         exit;
     } else {
@@ -30,14 +29,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'partial/header.php'; ?>
 
 <h2>Login</h2>
-  <a href="view/crear_usuario.php" class="btn-cierre">Crear Tecnico</a>
-<?php if($error) echo "<p style='color:red;'>$error</p>"; ?>
 
-<form method="post">
-    <label>Usuario</label>
-    <input type="text" name="username" required>
-    <label>Contraseña</label>
-    <input type="password" name="password" required>
+<?php if($error): ?>
+    <p style="color: #ff4d4d; font-weight: bold; text-align:center; margin-bottom:15px;">
+        <?= htmlspecialchars($error) ?>
+    </p>
+<?php endif; ?>
+
+<form method="post" autocomplete="off" autocomplete="new-password" style="max-width:400px; margin: 0 auto;">
+    <label for="username">Usuario</label>
+    <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required >
+
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+
     <button type="submit">Ingresar</button>
 </form>
 

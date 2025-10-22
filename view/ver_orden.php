@@ -36,44 +36,45 @@ $ordenes = array_filter($ordenes, fn($o) => $o['estado'] !== 'Entregado');
 <h2>Órdenes Registradas</h2>
 
 <table>
-   <thead>
-    <tr>
-        <th>Cliente</th>
-        <th>Creado Por</th>
-        <th>Fecha de Ingreso</th>
-        <th>Equipo</th>
-        <th>Problema Reportado</th>
-        <th>Estado</th>
-        <th>Total</th>
-        <th>Acciones</th>
-    </tr>
-</thead>
-<tbody>
-    <?php if (!empty($ordenes)): ?>
-        <?php foreach ($ordenes as $orden): ?>
-            <tr>
-                <td><?= htmlspecialchars(($orden['cliente_nombre'] ?? '') . ' ' . ($orden['cliente_apellido'] ?? '')) ?></td>
-               <td><?= htmlspecialchars($orden['creador_nombre'] ?? 'Desconocido') ?></td>
-
-                <td><?= isset($orden['fecha_creacion']) ? date("d/m/Y H:i", strtotime($orden['fecha_creacion'])) : '' ?></td>
-                <td><?= htmlspecialchars($orden['equipo'] ?? '') ?></td>
-                <td><?= nl2br(htmlspecialchars($orden['problema_reportado'] ?? '')) ?></td>
-                <td>
-                    <span class="estado <?= strtolower(str_replace(' ', '_', $orden['estado'] ?? '')) ?>">
-                        <?= htmlspecialchars($orden['estado'] ?? '') ?>
-                    </span>
-                </td>
-                <td>$<?= number_format($orden['total'] ?? 0, 2) ?></td>
-                <td class="acciones">
-                    <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Ver</a>
-                    <a href="editar_orden.php?id=<?= $orden['id'] ?>" class="btn editar">Editar</a>
-                    <a href="borrar_orden.php?id=<?= $orden['id'] ?>" class="btn borrar" onclick="return confirm('¿Seguro que deseas borrar esta orden?')">Borrar</a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    <?php else: ?>
+    <thead>
         <tr>
-            <td colspan="8">No hay órdenes registradas</td>
+            <th>Cliente</th>
+            <th>Fecha de Ingreso</th>
+            <th>Equipo</th>
+            <th>Problema Reportado</th>
+            <th>Estado</th>
+            <th>Total</th>
+            <th>Código Público</th> <!-- NUEVA COLUMNA -->
+            <th>Acciones</th>
         </tr>
-    <?php endif; ?>
-</tbody>
+    </thead>
+    <tbody>
+        <?php if (!empty($ordenes)): ?>
+            <?php foreach ($ordenes as $orden): ?>
+                <tr>
+                    <td><?= htmlspecialchars($orden['cliente_nombre'] . ' ' . $orden['cliente_apellido']) ?></td>
+
+                    <td><?= date("d/m/Y H:i", strtotime($orden['fecha_creacion'])) ?></td>
+                    <td><?= htmlspecialchars($orden['equipo']) ?></td>
+                    <td><?= nl2br(htmlspecialchars($orden['problema_reportado'])) ?></td>
+                    <td>
+                        <span class="estado <?= strtolower(str_replace(' ', '_', $orden['estado'])) ?>">
+                            <?= htmlspecialchars($orden['estado']) ?>
+                        </span>
+                    </td>
+                    <td>$<?= number_format($orden['total'], 2) ?></td>
+                    <td><?= htmlspecialchars($orden['codigo_publico']) ?></td> <!-- MOSTRAR CODIGO -->
+                    <td class="acciones">
+                        <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Ver</a>
+                        <a href="editar_orden.php?id=<?= $orden['id'] ?>" class="btn editar">Editar</a>
+                        <a href="borrar_orden.php?id=<?= $orden['id'] ?>" class="btn borrar" onclick="return confirm('¿Seguro que deseas borrar esta orden?')">Borrar</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="8">No hay órdenes registradas</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>

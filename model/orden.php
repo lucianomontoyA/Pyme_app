@@ -76,4 +76,11 @@ class Orden {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    public function obtenerPorCodigoPublico($codigo) {
+    $stmt = $this->pdo->prepare("SELECT * FROM ordenes WHERE codigo_publico = :codigo LIMIT 1");
+    $stmt->execute([':codigo' => $codigo]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 }

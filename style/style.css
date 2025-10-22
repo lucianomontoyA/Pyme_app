@@ -234,3 +234,22 @@ header nav a:hover {
 .card-finalizadas {
     border-top: 5px solid #28a745;
 }
+
+
+.btn-ver-pass {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    padding: 0;
+    font-size: 18px;
+    color: #555;
+}
+
+.btn-ver-pass:hover {
+    color: #007BFF;
+}

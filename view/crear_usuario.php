@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         $usuarioModel->crear($nombre, $username, $password, 'tecnico');
-        $success = "Usuario técnico creado correctamente.";
+        $success = "Técnico creado correctamente.";
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
@@ -33,25 +33,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php include 'partial/header.php'; ?>
 
-<h2>Crear Usuario Técnico</h2>
 
-<?php if ($error) echo "<p style='color:red;'>$error</p>"; ?>
-<?php if ($success) echo "<p style='color:green;'>$success</p>"; ?>
 
-<form method="post">
-    <label>Nombre</label>
-    <input type="text" name="nombre" required>
-    
-    <label>Username</label>
-    <input type="text" name="username" required>
-    
-    <label>Email</label>
-    <input type="email" name="email">
-    
-    <label>Contraseña</label>
-    <input type="password" name="password" required>
-    
-    <button type="submit">Crear Usuario</button>
+<h2>Crear Técnico</h2>
+
+<?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
+<?php if (!empty($success)) echo "<p style='color:green;'>$success</p>"; ?>
+
+<form method="post" autocomplete="off">
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre" value="<?= $_POST['nombre'] ?? '' ?>" required>
+
+    <label for="username">Usuario</label>
+    <input type="text" id="username" name="username" value="<?= $_POST['username'] ?? '' ?>" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" value="<?= $_POST['email'] ?? '' ?>">
+
+    <label for="password">Contraseña</label>
+    <div style="position: relative;">
+        <input type="password" id="password" name="password" autocomplete="new-password" required>
+        <button type="button" class="btn-ver-pass" onclick="togglePassword()">👁️</button>
+    </div>
+
+    <button type="submit">Crear Técnico</button>
 </form>
+
+<script>
+function togglePassword() {
+    const passInput = document.getElementById('password');
+    if (passInput.type === 'password') {
+        passInput.type = 'text';
+    } else {
+        passInput.type = 'password';
+    }
+}
+</script>
 
 <?php include 'partial/footer.php'; ?>
