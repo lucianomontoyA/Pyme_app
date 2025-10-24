@@ -37,10 +37,46 @@ class Orden {
 
 
 
-    public function actualizar($id, $equipo, $marca = null, $modelo = null, $serie = null, $problema_reportado = null, $observaciones = null, $estado = 'Ingresado', $total = 0.00) {
-    $sql = "UPDATE ordenes SET equipo = :equipo, marca = :marca, modelo = :modelo, serie = :serie,
-            problema_reportado = :problema_reportado, observaciones = :observaciones, estado = :estado, total = :total
-            WHERE id = :id";
+  public function actualizar(
+    $id,
+    $equipo,
+    $marca = null,
+    $modelo = null,
+    $serie = null,
+    $problema_reportado = null,
+    $observaciones = null,
+    $estado = 'Ingresado',
+    $total = 0.00
+) {
+    // Validar estado
+    $estados_validos = ['Ingresado','En revisión','Reparado','Entregado'];
+    if (!in_array($estado, $estados_validos)) {
+        $estado = 'Ingresado';
+    }
+
+    // Asegurarse que total sea decimal
+    $total = floatval($total);
+
+    $sql = "UPDATE ordenes SET 
+                equipo = :equipo,
+                marca = :marca,
+                modelo = :modelo,
+                serie = :serie,
+                problema_reportado = :problema_reportado,
+                observaciones = :observaciones,
+                estado = :estado,
+                total = :total";
+
+    if ($estado === 'En revisión') {
+        $sql .= ", fecha_revision = IF(fecha_revision IS NULL, NOW(), fecha_revision)";
+    } elseif ($estado === 'Reparado') {
+        $sql .= ", fecha_reparacion = IF(fecha_reparacion IS NULL, NOW(), fecha_reparacion)";
+    } elseif ($estado === 'Entregado') {
+        $sql .= ", fecha_finalizacion = IF(fecha_finalizacion IS NULL, NOW(), fecha_finalizacion)";
+    }
+
+    $sql .= " WHERE id = :id";
+
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute([
         ':equipo' => $equipo,
@@ -54,7 +90,6 @@ class Orden {
         ':id' => $id
     ]);
 }
-
 
     // Obtener orden por ID
     public function obtener($id) {

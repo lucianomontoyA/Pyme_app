@@ -39,8 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_orden'])) {
     $cliente_id = $clienteModel->crear(
         $_POST['nombre'],
         $_POST['apellido'],
-        $_POST['email'] ?? null,
-        $_POST['telefono'] ?? null
+        $_POST['email'] ,
+        $_POST['telefono'] ,
+        $_POST['direccion'],  // <-- agregamos
+    $_POST['cuit']         // <-- agregamos
     );
 
     // Crear orden y asociar el usuario logueado

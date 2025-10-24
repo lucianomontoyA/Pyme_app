@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php if ($orden): ?>
     <h3>Detalles de la Orden</h3>
+    <div class="table-container"> 
     <table>
         <tr><th>Cliente</th><td><?= htmlspecialchars($orden['nombre'] . ' ' . $orden['apellido']) ?></td></tr>
         <tr><th>Código Público</th><td><strong><?= htmlspecialchars($orden['codigo_publico']) ?></strong></td></tr>
@@ -64,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <tr><th>Total</th><td>$<?= number_format($orden['total'], 2) ?></td></tr>
         <tr><th>Fecha de Creación</th><td><?= date("d/m/Y H:i", strtotime($orden['fecha_creacion'])) ?></td></tr>
     </table>
+    </div>
 <?php endif; ?>
 
 <?php include 'partial/footer.php'; ?>

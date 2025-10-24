@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['guardar_orden'])) {
         $_POST['modelo'] ?? null,
         $_POST['serie'] ?? null,
         $_POST['problema_reportado'] ?? null,
-        $_POST['observaciones'] ?? null,
+        $_POST['observaciones'] ?? null, 
         $_POST['estado'] ?? 'Ingresado',
         $_POST['total'] ?? 0.00
     );
@@ -91,8 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['guardar_orden'])) {
         <label for="problema_reportado">Problema Reportado:</label>
         <textarea name="problema_reportado" id="problema_reportado"><?= htmlspecialchars($orden['problema_reportado']) ?></textarea>
 
-        <label for="observaciones">Observaciones:</label>
-        <textarea name="observaciones" id="observaciones"><?= htmlspecialchars($orden['observaciones']) ?></textarea>
+        <label for="observaciones">Resolución / Observaciones :</label>
+        <textarea name="observaciones" id="observaciones"><?= htmlspecialchars($orden['observaciones'] ?? '') ?></textarea>
+
 
         <label for="estado">Estado:</label>
         <select name="estado" id="estado">

@@ -29,12 +29,84 @@ $ordenModel = new Orden($pdo);
 $ordenes = $ordenModel->listar();
 
 // Filtrar: solo mostrar órdenes que NO estén entregadas
-$ordenes = array_filter($ordenes, fn($o) => $o['estado'] !== 'Entregado');
-
+$ordenes = array_filter($ordenes, function($o) {
+    $estado = trim($o['estado']); // eliminar espacios al inicio y fin
+    return in_array($estado, ['Ingresado', 'En revisión'], true);
+});
 ?>
 
-<h2>Órdenes Registradas</h2>
+<!-- FILTRO INICIO -->
 
+<!-- 🔎 Filtros -->
+ <div>
+    <h3 style="text-align: center; margin-top: 20px;">Filtros</h3>
+    <form style="margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+   
+    <input 
+        type="text" 
+        id="filtroGeneral" 
+        placeholder="Buscar por cualquier campo..." 
+        onkeyup="filtrarTabla()" 
+        style="padding: 6px 10px; flex: 1; min-width: 200px;"
+    >
+    
+    <label for="fechaInicio">Desde:</label>
+    <input type="date" id="fechaInicio" onchange="filtrarTabla()">
+
+    <label for="fechaFin">Hasta:</label>
+    <input type="date" id="fechaFin" onchange="filtrarTabla()">
+    </form>
+</div>
+<script>
+function filtrarTabla() {
+    const textoFiltro = document.getElementById('filtroGeneral').value.toLowerCase();
+    const fechaInicio = document.getElementById('fechaInicio').value;
+    const fechaFin = document.getElementById('fechaFin').value;
+
+    const filas = document.querySelectorAll('table tbody tr');
+
+    filas.forEach(fila => {
+        const celdas = fila.querySelectorAll('td');
+        let textoFila = '';
+
+        // Concatenamos el texto de todas las celdas (excepto Acciones)
+        for (let i = 0; i < celdas.length - 1; i++) {
+            textoFila += celdas[i].textContent.toLowerCase() + ' ';
+        }
+
+        const fecha = fila.cells[1].textContent.trim(); // columna fecha
+        const partes = fecha.split(" ");
+        const fechaOrden = partes[0].split("/").reverse().join("-"); // dd/mm/yyyy → yyyy-mm-dd
+
+        let mostrar = true;
+
+        // 🔍 Filtrar por texto (busca en todas las columnas)
+        if (textoFiltro && !textoFila.includes(textoFiltro)) {
+            mostrar = false;
+        }
+
+        // 📅 Filtrar por fechas
+        if (fechaInicio && fechaOrden < fechaInicio) {
+            mostrar = false;
+        }
+        if (fechaFin && fechaOrden > fechaFin) {
+            mostrar = false;
+        }
+
+        fila.style.display = mostrar ? "" : "none";
+    });
+}
+</script>
+
+
+
+
+
+<!-- FILTRO FIN -->
+
+
+<h2>Órdenes Registradas</h2>
+<div class="table-container"> 
 <table>
     <thead>
         <tr>
@@ -78,3 +150,4 @@ $ordenes = array_filter($ordenes, fn($o) => $o['estado'] !== 'Entregado');
         <?php endif; ?>
     </tbody>
 </table>
+</div>

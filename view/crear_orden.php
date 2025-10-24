@@ -1,14 +1,16 @@
 <?php 
 include 'partial/header.php'; 
 
-require_once __DIR__ . '/../config/auth.php';
-checkRole(['superadmin','tecnico']); //  
+
 
 // Obtenemos el ID del usuario logueado
 $usuario_id = $_SESSION['usuario_id'] ?? null;
 ?>
 
 <h2>Crear Nueva Orden</h2>
+ <?php if (isset($_SESSION['usuario_id'])): ?>
+            <a href="/view/logout.php" class="logout-button" style="color: red;">Cerrar sesión</a>
+        <?php endif; ?>
 
 <form action="/controller/orden_controller.php" method="post">
     <fieldset>
@@ -19,11 +21,17 @@ $usuario_id = $_SESSION['usuario_id'] ?? null;
         <label for="apellido">Apellido:</label>
         <input type="text" name="apellido" id="apellido" required>
 
+        <label for="direccion">Dirección:</label>
+        <input type="text" name="direccion" id="direccion" required>
+
+        <label for="cuit">CUIT / NIF:</label>
+        <input type="text" name="cuit" id="cuit" required >
+
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" required>
 
         <label for="telefono">Teléfono:</label>
-        <input type="text" name="telefono" id="telefono">
+        <input type="text" name="telefono" id="telefono" required>
     </fieldset>
 
     <fieldset>

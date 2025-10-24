@@ -17,8 +17,9 @@ $sql = "SELECT o.*, c.nombre, c.apellido
         FROM ordenes o 
         JOIN clientes c ON o.cliente_id = c.id
         WHERE o.estado = 'Entregado' 
-          AND DATE(o.fecha_creacion) = :hoy
-        ORDER BY o.fecha_creacion ASC";
+          AND DATE(o.fecha_finalizacion) = :hoy
+        ORDER BY o.fecha_finalizacion ASC";
+
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':hoy' => $hoy]);

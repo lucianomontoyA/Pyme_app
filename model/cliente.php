@@ -7,56 +7,48 @@ class Cliente {
     }
 
     // Crear un cliente y devolver su UUID generado por MySQL
-    public function crear($nombre, $apellido, $email = null, $telefono = null) {
-        try {
-            // Iniciar transacción
-            $this->pdo->beginTransaction();
+  public function crear($nombre, $apellido, $email = null, $telefono = null, $direccion = null, $cuit = null) {
+    try {
+        // Generamos el UUID en PHP (mejor práctica que depender del DEFAULT de MySQL)
+        $uuid = $this->pdo->query("SELECT UUID()")->fetchColumn();
 
-            // Insertar cliente sin especificar ID (MySQL generará UUID automáticamente)
-            $sql = "INSERT INTO clientes (nombre, apellido, email, telefono) 
-                    VALUES (:nombre, :apellido, :email, :telefono)";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([
-                ':nombre' => $nombre,
-                ':apellido' => $apellido,
-                ':email' => $email,
-                ':telefono' => $telefono
-            ]);
+        // Insertar cliente con UUID manual
+        $sql = "INSERT INTO clientes (id, nombre, apellido, email, telefono, direccion, cuit) 
+                VALUES (:id, :nombre, :apellido, :email, :telefono, :direccion, :cuit)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => $uuid,
+            ':nombre' => $nombre,
+            ':apellido' => $apellido,
+            ':email' => $email,
+            ':telefono' => $telefono,
+            ':direccion' => $direccion,
+            ':cuit' => $cuit
+        ]);
 
-            // Obtener el UUID generado de manera segura usando la misma transacción
-            $sql2 = "SELECT id FROM clientes 
-                     WHERE nombre = :nombre AND apellido = :apellido 
-                     ORDER BY fecha_creacion DESC LIMIT 1";
-            $stmt2 = $this->pdo->prepare($sql2);
-            $stmt2->execute([
-                ':nombre' => $nombre,
-                ':apellido' => $apellido
-            ]);
-            $cliente_id = $stmt2->fetchColumn();
-
-            // Confirmar transacción
-            $this->pdo->commit();
-
-            return $cliente_id;
-
-        } catch (PDOException $e) {
-            $this->pdo->rollBack();
-            throw new Exception("Error al crear cliente: " . $e->getMessage());
-        }
+        // Devolvemos el UUID recién creado
+        return $uuid;
+    } catch (PDOException $e) {
+        throw new Exception("Error al crear cliente: " . $e->getMessage());
     }
-
-
-    public function actualizar($id, $nombre, $apellido, $email = null, $telefono = null) {
-    $sql = "UPDATE clientes SET nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono WHERE id = :id";
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([
-        ':nombre' => $nombre,
-        ':apellido' => $apellido,
-        ':email' => $email,
-        ':telefono' => $telefono,
-        ':id' => $id
-    ]);
 }
+
+
+    public function actualizar($id, $nombre, $apellido, $email = null, $telefono = null, $direccion = null, $cuit = null) {
+        $sql = "UPDATE clientes 
+                SET nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono, direccion = :direccion, cuit = :cuit
+                WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':nombre' => $nombre,
+            ':apellido' => $apellido,
+            ':email' => $email,
+            ':telefono' => $telefono,
+            ':direccion' => $direccion,
+            ':cuit' => $cuit,
+            ':id' => $id
+        ]);
+    }
 
     // Obtener cliente por ID
     public function obtener($id) {

@@ -21,16 +21,14 @@ include __DIR__ . '/view/partial/header.php';
             <h3>Ver Órdenes</h3>
             <p>Consultar todas las órdenes activas.</p>
         </a>
-
+        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] !== 'tecnico'): ?>
         <a href="view/ordenes_finalizadas.php" class="card card-finalizadas">
             <h3>Órdenes Finalizadas</h3>
             <p>Revisar órdenes entregadas.</p>
         </a>
+             <?php endif; ?>
     </div>
 
-    <?php if(isset($_SESSION['usuario_id'])): ?>
-    <a href="/view/logout.php" class="logout-button">Cerrar sesión</a>
-    <?php endif; ?>
 
 
 
