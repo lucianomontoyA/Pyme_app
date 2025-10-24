@@ -2,6 +2,13 @@
 require_once __DIR__ . '/../config/auth.php';
 checkRole(['superadmin']); // superadmin y técnico pueden ver
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$_SESSION['pagina_actual'] = 'ordenes_reparadas.php';
+
+
+
 require_once '../model/Orden.php';
 require_once '../model/Cliente.php';
 require_once '../config/database.php'; // $pdo

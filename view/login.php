@@ -1,11 +1,16 @@
 <?php
-session_start();
+// Iniciar sesión solo si no está iniciada
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once '../config/database.php';
 require_once '../model/usuario.php';
 
 $usuarioModel = new Usuario($pdo);
 $error = '';
 
+// Procesar login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -13,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = $usuarioModel->obtenerPorUsername($username);
 
     if ($usuario && $usuarioModel->verificarPassword($password, $usuario['password'])) {
-        // Guardar datos de sesión
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['rol'] = $usuario['rol'];
         $_SESSION['nombre'] = $usuario['nombre'];
@@ -24,9 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Usuario o contraseña incorrectos.";
     }
 }
-?>
 
-<?php include 'partial/header.php'; ?>
+// Indicar que estamos en login para ocultar nav
+$_SESSION['pagina_actual'] = 'login';
+
+// Solo incluir header una vez
+include 'partial/header.php';
+?>
 
 <h2>Login</h2>
 

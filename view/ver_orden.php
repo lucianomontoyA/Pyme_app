@@ -1,4 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$_SESSION['pagina_actual'] = 'ver_orden';
+
 include 'partial/header.php';
 require_once '../model/Orden.php';
 require_once '../model/Cliente.php';

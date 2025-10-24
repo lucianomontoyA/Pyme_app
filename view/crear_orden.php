@@ -1,16 +1,17 @@
 <?php 
-include 'partial/header.php'; 
-
-
+ 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$_SESSION['pagina_actual'] = 'crear_orden';
+include 'partial/header.php';
 
 // Obtenemos el ID del usuario logueado
 $usuario_id = $_SESSION['usuario_id'] ?? null;
 ?>
 
 <h2>Crear Nueva Orden</h2>
- <?php if (isset($_SESSION['usuario_id'])): ?>
-            <a href="/view/logout.php" class="logout-button" style="color: red;">Cerrar sesión</a>
-        <?php endif; ?>
+ 
 
 <form action="/controller/orden_controller.php" method="post">
     <fieldset>

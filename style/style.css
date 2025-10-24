@@ -497,3 +497,18 @@ tr:hover {
         font-size: 14px;
     }
 }
+/* Dropdown verde para cierres */
+.dropdown.cierres .dropbtn {
+    background: linear-gradient(90deg, #28a745, #1e7e34);
+    color: white;
+}
+
+.dropdown.cierres .dropbtn:hover {
+    background: linear-gradient(90deg, #218838, #1c7430);
+    box-shadow: 0 0 10px rgba(40,167,69,0.6);
+    transform: translateY(-2px);
+}
+
+.dropdown.cierres .dropdown-content a:hover {
+    background: rgba(40,167,69,0.2);
+}

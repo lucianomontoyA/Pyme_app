@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../config/auth.php';
 checkRole(['superadmin']); // solo superadmin
 
@@ -25,6 +26,7 @@ $ordenes_entregadas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- FILTRO INICIO -->
 <div>
+    
     <h3 style="text-align: center; margin-top: 20px;">Filtros</h3>
     <form style="margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
         <input 
