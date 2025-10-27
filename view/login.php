@@ -36,7 +36,7 @@ $_SESSION['pagina_actual'] = 'login';
 include 'partial/header.php';
 ?>
 
-<h2>Login</h2>
+<h2>Inicio de sesión</h2>
 
 <?php if($error): ?>
     <p style="color: #ff4d4d; font-weight: bold; text-align:center; margin-bottom:15px;">

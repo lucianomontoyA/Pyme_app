@@ -27,6 +27,7 @@
                 <a href="/view/ordenes_reparadas.php">Órdenes Reparadas</a>
                 <a href="/view/ordenes_finalizadas.php">Órdenes Finalizadas</a>
                 <a href="/view/consultar_orden.php">Consultar estado de Orden</a>
+                 <a href="/view/crear_usuario.php">Crear Técnico</a>
             </div>
         </div>
         
@@ -43,7 +44,7 @@
         </div>
     </div>
 <?php endif; ?>
-    <a href="/view/crear_usuario.php">Crear Técnico</a>
+   
     <a href="/view/logout.php" class="logout-button" style="color:red;">Cerrar sesión</a>
 </nav>
 
