@@ -551,3 +551,23 @@ input:focus::placeholder {
     opacity: 1;
     transition: color 0.3s ease;
 }
+
+.table-container-scroll {
+    max-height: 40em; /* altura de la “ventana” */
+    overflow-y: auto;  /* scroll vertical */
+    border: 1px solid #08080c;
+}
+
+.table-container-scroll table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container-scroll th, .table-container-scroll td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-container-scroll tr:nth-child(even) {
+    background-color: #0b0a0f;
+}

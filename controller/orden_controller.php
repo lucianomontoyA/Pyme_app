@@ -4,13 +4,13 @@ session_start(); // 1️⃣ Iniciar sesión
 require_once '../model/Cliente.php';
 require_once '../model/Orden.php';
 
-// Verificar que el usuario esté logueado
+// 2️⃣ Verificar que el usuario esté logueado
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../view/login.php");
     exit;
 }
 
-// Configuración PDO
+// 3️⃣ Configuración de conexión PDO
 $host = 'localhost';
 $db   = 'servicio_tecnico';
 $user = 'root';
@@ -29,85 +29,67 @@ try {
     die("Error de conexión: " . $e->getMessage());
 }
 
-// Instanciamos modelos
+// 4️⃣ Instanciamos los modelos
 $clienteModel = new Cliente($pdo);
 $ordenModel   = new Orden($pdo);
 
-// Procesar formulario POST para crear orden
+// 5️⃣ Procesar formulario para crear orden
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_orden'])) {
-    // Crear cliente
-    $cliente_id = $clienteModel->crear(
-        $_POST['nombre'],
-        $_POST['apellido'],
-        $_POST['email'] ,
-        $_POST['telefono'] ,
-        $_POST['direccion'],  // <-- agregamos
-    $_POST['cuit']         // <-- agregamos
-    );
 
-    // Crear orden y asociar el usuario logueado
+    $tipo_cliente = $_POST['tipo_cliente'] ?? 'nuevo';
+    $cliente_id = null;
+
+    // Si el cliente es existente, usamos su ID directamente
+    if ($tipo_cliente === 'existente' && !empty($_POST['cliente_id'])) {
+        $cliente_id = $_POST['cliente_id'];
+
+    // Si el cliente es nuevo, lo creamos
+    } else {
+        $cliente_id = $clienteModel->crear(
+            $_POST['nombre'] ?? '',
+            $_POST['apellido'] ?? '',
+            $_POST['email'] ?? '',
+            $_POST['telefono'] ?? '',
+            $_POST['direccion'] ?? '',
+            $_POST['cuit'] ?? ''
+        );
+    }
+
+    // 6️⃣ Crear orden y asociarla al usuario logueado
     $orden_id = $ordenModel->crear(
         $cliente_id,
-        $_POST['equipo'],
-        $_POST['marca'] ?? null,
-        $_POST['modelo'] ?? null,
-        $_POST['serie'] ?? null,
-        $_POST['problema_reportado'] ?? null,
-        $_POST['observaciones'] ?? null,
+        $_POST['equipo'] ?? '',
+        $_POST['marca'] ?? '',
+        $_POST['modelo'] ?? '',
+        $_POST['serie'] ?? '',
+        $_POST['problema_reportado'] ?? '',
+        $_POST['observaciones'] ?? '',
         $_POST['total'] ?? 0,
-        $_SESSION['usuario_id'] // 2️⃣ Usuario logueado
+        $_SESSION['usuario_id']
     );
 
+    // 7️⃣ Redirigir al detalle de la orden creada
     header("Location: ../view/ver_orden.php?id=" . $orden_id);
     exit;
 }
 
-
 /*
 ================================================================================
-FLUJO COMPLETO DEL SISTEMA DE CREACIÓN DE ORDENES
+FLUJO COMPLETO DEL CONTROLADOR DE ÓRDENES
 ================================================================================
-
-1. Inclusión de clases:
-   - Se cargan 'Cliente.php' y 'Orden.php' con require_once para poder usar 
-     sus métodos y manejar la información de clientes y órdenes.
-
-2. Configuración y conexión a la base de datos:
-   - Se definen host, db, user, pass y charset para PDO.
-   - Se crea el DSN y las opciones de PDO.
-   - Se instancia $pdo con try/catch:
-       - Si la conexión falla, se detiene el script mostrando el error.
-
-3. Instanciación de modelos:
-   - $clienteModel = new Cliente($pdo) → permite crear y gestionar clientes.
-   - $ordenModel = new Orden($pdo) → permite crear y gestionar órdenes.
-
-4. Procesamiento del formulario POST:
-   - Se verifica que la solicitud sea POST y que exista 'crear_orden'.
-   - Esto garantiza que el código solo se ejecute al enviar el formulario.
-
-5. Creación de cliente:
-   - $cliente_id = $clienteModel->crear(...)  
-       - Se pasan: nombre, apellido, email y teléfono (opcional).
-       - Se inserta un nuevo registro en la tabla clientes.
-       - Devuelve el ID del cliente recién creado.
-
-6. Creación de orden:
-   - $orden_id = $ordenModel->crear(...)  
-       - Se pasa $cliente_id para asociar la orden al cliente.
-       - Se pasan datos del equipo: tipo, marca, modelo, serie, problema.
-       - Se inserta un nuevo registro en la tabla órdenes.
-       - Devuelve el ID de la orden recién creada.
-
-7. Redirección:
-   - header("Location: ../view/ver_orden.php?id=" . $orden_id)
-       - Redirige al detalle de la orden.
-   - exit → termina la ejecución para evitar procesar código adicional.
-
+1️⃣ Se inicia la sesión para acceder a los datos del usuario logueado.
+2️⃣ Se verifica que el usuario esté autenticado; si no, se lo redirige al login.
+3️⃣ Se configura y establece la conexión PDO con la base de datos.
+4️⃣ Se instancian los modelos Cliente y Orden.
+5️⃣ Al recibir un formulario POST:
+    - Se verifica si el cliente es nuevo o existente.
+    - Si es nuevo, se crea en la tabla "clientes" y se obtiene su ID.
+    - Si es existente, se usa el ID que viene del formulario.
+6️⃣ Se crea la nueva orden asociada al cliente y al usuario logueado.
+7️⃣ Se redirige al detalle de la orden recién creada.
 ================================================================================
 NOTA:
-- Los campos opcionales usan el operador ?? null para evitar errores si no se envían.
-- Este bloque final sirve como referencia rápida del flujo completo, 
-  permitiendo entender el código sin saturarlo de comentarios línea por línea.
+- Todos los valores opcionales usan ?? '' o ?? null para evitar errores.
+- Esto garantiza un flujo limpio y seguro al crear órdenes desde el formulario.
 ================================================================================
 */

@@ -57,4 +57,16 @@ class Cliente {
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+ public function listar() {
+    try {
+        $sql = "SELECT * FROM clientes ORDER BY nombre ASC";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        throw new Exception("Error al listar clientes: " . $e->getMessage());
+    }
+}
+
 }

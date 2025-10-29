@@ -20,6 +20,19 @@
     <a href="/view/crear_orden.php">Nueva Orden</a>
 
     <?php if($_SESSION['rol'] === 'superadmin'): ?>
+        
+
+
+        <div class="dropdown">
+            <button class="dropbtn">Clientes ▼</button>
+            <div class="dropdown-content">
+                <a href="/view/ver_cliente.php">Ver Clientes</a>
+                <a href="/view/crear_cliente.php">Nuevo Cliente</a>
+            </div>
+        </div>
+
+
+
         <div class="dropdown">
             <button class="dropbtn">Órdenes ▼</button>
             <div class="dropdown-content">
