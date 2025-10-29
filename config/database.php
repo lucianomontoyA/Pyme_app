@@ -1,19 +1,35 @@
 <?php
+// config/database.php
+
+// Incluir la variable de entorno
+
+require_once __DIR__ . '/env.php';
+
 // Configuración de la base de datos
-$host = 'localhost';
-$db   = 'servicio_tecnico'; // nombre de tu base
-$user = 'root';             // tu usuario
-$pass = 'root';             // tu contraseña
-$charset = 'utf8mb4';
+if ($isProd) {
+    // Datos de PRODUCCIÓN
+    $host = 'localhost';
+    $db   = 'u578954353_serv_tecnico';
+    $user = 'u578954353_root';
+    $pass = 'Ambeloquipi1!';
+    $charset = 'utf8mb4';
+} else {
+    // Datos de DESARROLLO
+    $host = 'localhost';
+    $db   = 'servicio_tecnico';
+    $user = 'root';
+    $pass = 'root';
+    $charset = 'utf8mb4';
+}
 
 // DSN para PDO
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
 // Opciones recomendadas para PDO
 $options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,      // lanzar excepciones en errores
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // resultados como array asociativo
-    PDO::ATTR_EMULATE_PREPARES => false,             // usar prepared statements reales
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
 // Crear la conexión PDO
