@@ -1,7 +1,7 @@
 <?php
 require_once '../config/database.php';
-require_once '../model/Orden.php';
-require_once '../model/Cliente.php';
+require_once '../model/orden.php';
+require_once '../model/cliente.php';
 
 // 🔒 Si querés que esté abierto al público, comenta esta línea
 // require_once __DIR__ . '/../config/auth.php';
