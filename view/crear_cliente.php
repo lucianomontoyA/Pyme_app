@@ -3,9 +3,9 @@ session_start();
 $_SESSION['pagina_actual'] = 'crear_cliente';
 
 require_once '../config/database.php';
-require_once '../model/Usuario.php';
+require_once '../model/usuario.php';
 include 'partial/header.php';
-require_once '../model/Cliente.php';
+require_once '../model/cliente.php';
 
 // Instanciar Cliente
 $clienteModel = new Cliente($pdo);

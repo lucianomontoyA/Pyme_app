@@ -4,7 +4,7 @@ $_SESSION['pagina_actual'] = 'crear_orden';
 
 require_once '../config/database.php';
 include 'partial/header.php';
-require_once '../model/Cliente.php';
+require_once '../model/cliente.php';
 
 
 // ----------------------

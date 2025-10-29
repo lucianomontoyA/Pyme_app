@@ -4,7 +4,7 @@
 
 session_start();
 require_once '../config/database.php';
-require_once '../model/Usuario.php';
+require_once '../model/usuario.php';
 
 // Solo superadmin puede acceder
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'superadmin') {

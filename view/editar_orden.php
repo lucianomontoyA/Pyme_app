@@ -2,28 +2,11 @@
 session_start();
 $_SESSION['pagina_actual'] = 'editar_orden';
 
+require_once '../config/database.php';
 include 'partial/header.php';
-require_once '../model/Cliente.php';
-require_once '../model/Orden.php';
+require_once '../model/cliente.php';
+require_once '../model/orden.php';
 
-// Configuración PDO
-$host = 'localhost';
-$db   = 'servicio_tecnico';
-$user = 'root';
-$pass = 'root';
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-];
-
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
-}
 
 // Instanciar modelos
 $clienteModel = new Cliente($pdo);

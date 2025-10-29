@@ -5,8 +5,9 @@ if (session_status() == PHP_SESSION_NONE) {
 $_SESSION['pagina_actual'] = 'ver_orden';
 
 include 'partial/header.php';
-require_once '../model/Orden.php';
-require_once '../model/Cliente.php';
+require_once '../model/orden.php';
+require_once '../model/cliente.php';
+require_once '../config/database.php';
 
 // Configurar PDO (igual que en tu controller)
 $host = 'localhost';

@@ -9,8 +9,8 @@ $_SESSION['pagina_actual'] = 'ordenes_reparadas.php';
 
 
 
-require_once '../model/Orden.php';
-require_once '../model/Cliente.php';
+require_once '../model/orden.php';
+require_once '../model/cliente.php';
 require_once '../config/database.php'; // $pdo
 
 $ordenModel = new Orden($pdo);

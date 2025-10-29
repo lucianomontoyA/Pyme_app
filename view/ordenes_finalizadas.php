@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../config/auth.php';
 checkRole(['superadmin']); // solo superadmin
 
-require_once '../model/Orden.php';
-require_once '../model/Cliente.php';
+require_once '../model/orden.php';
+require_once '../model/cliente.php';
 require_once '../config/database.php'; // $pdo
 
 $ordenModel = new Orden($pdo);
