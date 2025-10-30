@@ -571,3 +571,210 @@ input:focus::placeholder {
 .table-container-scroll tr:nth-child(even) {
     background-color: #0b0a0f;
 }
+/* =========================
+   TARJETA COTIZACIÓN DÓLAR
+========================= */
+.cotizacion-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+}
+
+.cotizacion-card {
+  background: linear-gradient(145deg, #1a1a2f, #0f0f1a);
+  border: 1px solid rgba(0,198,255,0.2);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,198,255,0.15);
+  padding: 25px 30px;
+  width: 320px;
+  text-align: center;
+  color: #eaeaea;
+  transition: all 0.3s ease;
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.cotizacion-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 0 25px rgba(0,198,255,0.3);
+}
+
+.cotizacion-card h3 {
+  color: #00eaff;
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 8px rgba(0,198,255,0.4);
+  letter-spacing: 0.5px;
+}
+
+.cotizacion-precios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.precio-item {
+  display: flex;
+  justify-content: space-between;
+  background: #222238;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,198,255,0.1);
+}
+
+.precio-item.promedio {
+  background: linear-gradient(90deg, #0072ff22, #00c6ff22);
+  border-color: rgba(0,198,255,0.3);
+}
+
+.label {
+  color: #9ccfff;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.valor {
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 4px rgba(0,198,255,0.3);
+}
+
+.update-time {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+
+.cotizacion-card canvas {
+  margin-top: 10px;
+}
+
+#cryptoCard {
+  width: 360px;
+}
+
+/* =========================
+   COTIZACIONES (DÓLAR + CRIPTO)
+========================= */
+.cotizacion-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.cotizacion-card {
+  background: linear-gradient(145deg, #1c1c2c, #252538);
+  color: #eaeaea;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  padding: 25px 30px;
+  width: 340px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 198, 255, 0.1);
+}
+
+.cotizacion-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 198, 255, 0.2);
+}
+
+.cotizacion-card h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #00eaff;
+  text-shadow: 0 0 8px rgba(0,198,255,0.4);
+}
+
+.cotizacion-precios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.precio-item {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0, 198, 255, 0.08);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 15px;
+}
+
+.precio-item.promedio {
+  background: rgba(0, 198, 255, 0.15);
+  font-weight: bold;
+}
+
+.label {
+  color: #aaa;
+}
+
+.valor {
+  color: #00eaff;
+  font-weight: 600;
+}
+
+.update-time {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* Ajuste del gráfico */
+.cotizacion-card canvas {
+  margin-top: 10px;
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* =========================
+   RESPONSIVE (MEDIA QUERIES)
+========================= */
+@media (max-width: 1024px) {
+  .cotizacion-container {
+    gap: 20px;
+  }
+  .cotizacion-card {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cotizacion-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cotizacion-card {
+    width: 90%;
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cotizacion-card {
+    padding: 20px;
+  }
+
+  .cotizacion-card h3 {
+    font-size: 20px;
+  }
+
+  .precio-item {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .update-time {
+    font-size: 12px;
+  }
+}
