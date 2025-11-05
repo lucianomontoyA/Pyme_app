@@ -3,31 +3,13 @@ session_start(); // 1️⃣ Iniciar sesión
 
 require_once '../model/cliente.php';
 require_once '../model/orden.php';
-
+require_once '../config/database.php';
 // 2️⃣ Verificar que el usuario esté logueado
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../view/login.php");
     exit;
 }
 
-// 3️⃣ Configuración de conexión PDO
-$host = 'localhost';
-$db   = 'servicio_tecnico';
-$user = 'root';
-$pass = 'root';
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-];
-
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
-}
 
 // 4️⃣ Instanciamos los modelos
 $clienteModel = new Cliente($pdo);
