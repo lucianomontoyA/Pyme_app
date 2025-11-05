@@ -1,8 +1,17 @@
 <?php
+require_once __DIR__ . '/../config/auth.php';
+checkRole(['superadmin']); // solo superadmin
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $_SESSION['pagina_actual'] = 'ver_orden';
+
+
+
+
+
 
 include 'partial/header.php';
 require_once '../model/orden.php';
@@ -125,11 +134,12 @@ function filtrarTabla() {
                     </td>
                     <td>$<?= number_format($orden['total'], 2) ?></td>
                     <td><?= htmlspecialchars($orden['codigo_publico']) ?></td> <!-- MOSTRAR CODIGO -->
-                 <td class="acciones">
-  <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Ver</a>
-  <a href="editar_orden.php?id=<?= $orden['id'] ?>" class="btn editar">Editar</a>
-  <a href="borrar_orden.php?id=<?= $orden['id'] ?>" class="btn borrar" onclick="return confirm('¿Seguro que deseas borrar esta orden?')">Borrar</a>
-</td>
+                    <td class="acciones">
+                    <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Factura</a>
+                    <a href="editar_orden.php?id=<?= $orden['id'] ?>" class="btn editar">Editar</a>
+                    <a href="borrar_orden.php?id=<?= $orden['id'] ?>" class="btn borrar" onclick="return confirm('¿Seguro que deseas borrar esta orden?')">Borrar</a>
+                    </td>
+
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>

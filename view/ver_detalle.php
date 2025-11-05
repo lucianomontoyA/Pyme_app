@@ -21,11 +21,11 @@ $cliente = $clienteModel->obtener($orden['cliente_id']);
    Datos del emisor (pueden venir de BD luego)
 ========================================== */
 $emisor = [
-    'nombre' => 'Servicio Técnico Javierp',
+    'nombre' => 'Alejandro Castellini',
     'cuit' => '20-12345678-9',
     'direccion' => 'Av. Colón 1234, Mar del Plata, Buenos Aires',
     'condicion_iva' => 'Responsable Inscripto',
-    'telefono' => '+54 9 650591469',
+    'telefono' => '+54 9 2235247644',
     'email' => 'javierp89@outlook.es'
 ];
 ?>
@@ -125,17 +125,58 @@ $emisor = [
     font-size: 13px;
 }
 
+/* === LOGO EN FACTURA / REMITO === */
+.remito-logo {
+    width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Para impresión también se ve nítido */
+@media print {
+    .remito-logo {
+        max-width: 120px;
+        filter: none;
+    }
+}
+
+
+
 /* PDF / impresión */
 @media print {
     .print-button { display: none; }
     body { margin: 0; }
+     header,
+    nav,
+    .menu,
+    .navbar,
+    .user-info,
+    .sidebar,
+    .footer,
+    .topbar {
+        display: none !important;
+    }
+
+    /* Ajustes del body para impresión limpia */
+    body {
+        margin: 0 !important;
+        background: #fff !important;
+    }
+
+    /* Evita que se corte el remito entre páginas */
+    .remito-copy {
+        page-break-inside: avoid;
+    }
 }
+
 </style>
 
 <div class="orden-container">
     <button onclick="window.print()" class="print-button">Imprimir Remito</button>
-    <button id="btnPrint" class="print-button">Imprimir Remito</button>
-
+   
 
     <div class="remito">
         <?php for ($i = 0; $i < 2; $i++): ?>
@@ -143,6 +184,7 @@ $emisor = [
             <div class="remito-copy">
             
             <div class="remito-header">
+                 <img src="/img/logo.png" alt="Logo" class="remito-logo">
                 <h1><?= htmlspecialchars($emisor['nombre']) ?></h1>
                 <p><strong>CUIT:</strong> <?= htmlspecialchars($emisor['cuit']) ?></p>
                 <p><strong>Dirección:</strong> <?= htmlspecialchars($emisor['direccion']) ?></p>

@@ -4,7 +4,7 @@ checkLogin();
 
 // ✅ conexión a la base centralizada
 require_once __DIR__ . '/config/database.php';
-require_once __DIR__ . '/model/Orden.php';
+require_once __DIR__ . '/model/orden.php';
 
 // ✅ Instancia del modelo
 $ordenModel = new Orden($pdo);
@@ -160,6 +160,9 @@ include __DIR__ . '/view/partial/header.php';
       scales: { y: { beginAtZero: true } }
     }
   });
+  document.getElementById('ordenesChart').addEventListener('click', function() {
+  window.location.href = '/view/ver_orden.php';
+});
 </script>
 
 <div class="menu-cards">

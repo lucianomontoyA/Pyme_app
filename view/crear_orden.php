@@ -6,89 +6,126 @@ require_once '../config/database.php';
 include 'partial/header.php';
 require_once '../model/cliente.php';
 
-
 // ----------------------
 // Instanciar Cliente
 // ----------------------
 $cliente = new Cliente($pdo);
-$clientes = $cliente->listar(); // Últimos 10 clientes para select inicial
+$clientes = $cliente->listar();
 
-// ID del usuario logueado
 $usuario_id = $_SESSION['usuario_id'] ?? null;
 ?>
 
-<h2>Crear Nueva Orden</h2>
+<h2 style="text-align:center; margin-bottom:20px;">Crear Nueva Orden</h2>
 
-<form action="/controller/orden_controller.php" method="post">
+<form action="/controller/orden_controller.php" method="post" class="form-grid">
+    <!-- ============================= -->
+    <!-- SECCIÓN CLIENTE -->
+    <!-- ============================= -->
     <fieldset>
         <legend>Cliente</legend>
 
-        <label for="tipo_cliente">Tipo de cliente:</label>
-        <select id="tipo_cliente" name="tipo_cliente" onchange="toggleCliente()">
-            <option value="nuevo">Nuevo cliente</option>
-            <option value="existente">Cliente existente</option>
-        </select>
+        <div class="form-row">
+            <label for="tipo_cliente">Tipo de cliente:</label>
+            <select id="tipo_cliente" name="tipo_cliente" onchange="toggleCliente()">
+                <option value="nuevo">Nuevo cliente</option>
+                <option value="existente">Cliente existente</option>
+            </select>
+        </div>
 
         <!-- CLIENTE EXISTENTE -->
         <div id="cliente_existente" style="display:none; margin-top:10px;">
-            <label for="cliente_buscar">Buscar cliente:</label>
-            <input type="text" id="cliente_buscar" placeholder="Escribí nombre, apellido o email..." autocomplete="off">
-
-            <label for="cliente_id">Seleccionar cliente:</label>
-            <select name="cliente_id" id="cliente_id">
-                <option value="">-- Seleccionar cliente --</option>
-                <?php foreach ($clientes as $c): ?>
-                    <option value="<?= $c['id'] ?>">
-                        <?= htmlspecialchars($c['nombre'] . ' ' . $c['apellido']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+            <div class="form-row">
+                <label for="cliente_buscar">Buscar cliente:</label>
+                <input type="text" id="cliente_buscar" placeholder="Escribí nombre, apellido o email..." autocomplete="off">
+            </div>
+            <div class="form-row">
+                <label for="cliente_id">Seleccionar cliente:</label>
+                <select name="cliente_id" id="cliente_id">
+                    <option value="">-- Seleccionar cliente --</option>
+                    <?php foreach ($clientes as $c): ?>
+                        <option value="<?= $c['id'] ?>">
+                            <?= htmlspecialchars($c['nombre'] . ' ' . $c['apellido']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
         </div>
 
         <!-- CLIENTE NUEVO -->
         <div id="cliente_nuevo">
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre" required>
+            <div class="form-row">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" required>
+            </div>
 
-            <label for="apellido">Apellido:</label>
-            <input type="text" name="apellido" id="apellido" required>
+            <div class="form-row">
+                <label for="apellido">Apellido:</label>
+                <input type="text" name="apellido" id="apellido" required>
+            </div>
 
-            <label for="direccion">Dirección:</label>
-            <input type="text" name="direccion" id="direccion" required>
+            <div class="form-row">
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" id="direccion" required>
+            </div>
 
-            <label for="cuit">CUIT / NIF:</label>
-            <input type="text" name="cuit" id="cuit">
+            <div class="form-row">
+                <label for="cuit">CUIT / NIF:</label>
+                <input type="text" name="cuit" id="cuit">
+            </div>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email">
+            <div class="form-row">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email">
+            </div>
 
-            <label for="telefono">Teléfono:</label>
-            <input type="text" name="telefono" id="telefono">
+            <div class="form-row">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" name="telefono" id="telefono">
+            </div>
         </div>
     </fieldset>
 
+    <!-- ============================= -->
+    <!-- SECCIÓN EQUIPO -->
+    <!-- ============================= -->
     <fieldset>
         <legend>Datos del Equipo</legend>
-        <label for="equipo">Equipo:</label>
-        <input type="text" name="equipo" id="equipo" required>
 
-        <label for="marca">Marca:</label>
-        <input type="text" name="marca" id="marca">
+        <div class="form-row">
+            <label for="equipo">Equipo:</label>
+            <input type="text" name="equipo" id="equipo" required>
+        </div>
 
-        <label for="modelo">Modelo:</label>
-        <input type="text" name="modelo" id="modelo">
+        <div class="form-row">
+            <label for="marca">Marca:</label>
+            <input type="text" name="marca" id="marca">
+        </div>
 
-        <label for="serie">Serie:</label>
-        <input type="text" name="serie" id="serie">
+        <div class="form-row">
+            <label for="modelo">Modelo:</label>
+            <input type="text" name="modelo" id="modelo">
+        </div>
 
-        <label for="problema_reportado">Problema Reportado:</label>
-        <textarea name="problema_reportado" id="problema_reportado"></textarea>
+        <div class="form-row">
+            <label for="serie">Serie:</label>
+            <input type="text" name="serie" id="serie">
+        </div>
+
+        <div class="form-row full">
+            <label for="problema_reportado">Problema Reportado:</label>
+            <textarea name="problema_reportado" id="problema_reportado" rows="3"></textarea>
+        </div>
     </fieldset>
 
     <input type="hidden" name="usuario_id" value="<?= htmlspecialchars($usuario_id) ?>">
 
-    <button type="submit" name="crear_orden">Crear Orden</button>
+    <div class="form-actions">
+        <button type="submit" name="crear_orden">Crear Orden</button>
+    </div>
+
 </form>
+
+
 
 <script>
 // ----------------------
@@ -127,7 +164,6 @@ inputBuscar.addEventListener('input', function() {
         return;
     }
 
-    // Esperar 300ms para no hacer demasiadas peticiones
     timeout = setTimeout(() => {
         fetch(`/controller/buscar_clientes.php?q=${encodeURIComponent(query)}`)
             .then(res => res.json())
@@ -140,7 +176,6 @@ inputBuscar.addEventListener('input', function() {
                     selectCliente.appendChild(opt);
                 });
 
-                // Si solo hay un resultado, se selecciona automáticamente
                 if (data.length === 1) {
                     selectCliente.selectedIndex = 1;
                 }
@@ -149,14 +184,12 @@ inputBuscar.addEventListener('input', function() {
     }, 300);
 });
 
-// Autocompletar el input al cambiar select
 selectCliente.addEventListener('change', function() {
     const selected = this.options[this.selectedIndex];
     if (selected && selected.value) {
         inputBuscar.value = selected.textContent;
     }
 });
-
 </script>
 
 <?php include 'partial/footer.php'; ?>

@@ -1,8 +1,8 @@
 <?php
 session_start(); // 1️⃣ Iniciar sesión
 
-require_once '../model/Cliente.php';
-require_once '../model/Orden.php';
+require_once '../model/cliente.php';
+require_once '../model/orden.php';
 
 // 2️⃣ Verificar que el usuario esté logueado
 if (!isset($_SESSION['usuario_id'])) {

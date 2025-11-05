@@ -18,25 +18,31 @@ body {
 /* =========================
    HEADER Y NAVEGACIÓN
 ========================= */
+
+
+
 header {
-    background: rgba(20, 20, 40, 0.95);
-    color: #fff;
-    padding: 20px 40px;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
-    position: relative;
-    z-index: 10;
+    background-image: url("/img/header3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  color: #fff;
+  padding: 20px 40px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 3px 15px rgba(0, 198, 255, 0.3);
 }
 
 header h1 {
-    margin: 0;
+    color:whitesmoke;
+    margin: 2%;
     font-size: 26px;
     letter-spacing: 1px;
     text-transform: uppercase;
     text-align: center;
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+   
+    /*-webkit-background-clip: text;*/
+   
 }
 h2{
     text-align: center;
@@ -162,6 +168,12 @@ header nav a:hover {
 /* =========================
    Reajuste del MAIN y secciones
 ========================= */
+
+
+
+
+
+
 main.home-container {
     text-align: center;
     padding: 60px 20px;
@@ -230,6 +242,60 @@ main.home-container p {
 
 
 
+h3{
+  text-align: center;
+}
+
+
+/* =========================
+   LOGO HEADER
+========================= */
+
+.logo {
+    height: 60px;
+    width: auto;
+    margin-right: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Estructura del header en PC */
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Logo a la izquierda en pantallas grandes */
+@media (min-width: 769px) {
+    .header-top {
+        justify-content: flex-start;
+    }
+
+    .logo {
+        position: absolute;
+        left: 40px;
+        height: 80px; /* un poco más grande en escritorio */
+    }
+
+    header h1 {
+        flex: 1;
+        text-align: center;
+        margin-left: 80px;
+    }
+}
+
+/* Logo centrado debajo del título en móviles */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+    }
+
+    .logo {
+        margin-top: 10px;
+        height: 60px;
+    }
+}
 
 
 
@@ -321,6 +387,8 @@ main.home-container p {
    FORMULARIOS
 ========================= */
 form {
+    
+    align-items: center;
     max-width: 700px;
     margin: 30px auto;
     background: #1e1e2f;
@@ -778,3 +846,432 @@ input:focus::placeholder {
     font-size: 12px;
   }
 }
+/* =========================
+   🔹 AJUSTE DE TAMAÑO: MEDIDORES DÓLAR / CRIPTO / ÓRDENES
+========================= */
+.cotizacion-card {
+  width: 220px !important;     /* antes 340px */
+  padding: 15px 20px !important;
+  border-radius: 12px;
+}
+
+.cotizacion-card h3 {
+  font-size: 16px !important;
+  margin-bottom: 8px;
+}
+
+.precio-item {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.valor {
+  font-size: 14px !important;
+}
+
+.update-time {
+  font-size: 11px !important;
+}
+
+/* 🔸 Gráficos más chicos */
+.cotizacion-card canvas {
+  width: 100% !important;
+  height: 120px !important; /* antes era auto, lo fijamos más bajo */
+}
+
+/* =========================
+   🔹 AJUSTE RESPONSIVE MOBILE
+========================= */
+@media (max-width: 768px) {
+  .cotizacion-card {
+    width: 170px !important;
+    padding: 12px 16px !important;
+  }
+
+  .cotizacion-card h3 {
+    font-size: 14px !important;
+  }
+
+  .valor {
+    font-size: 12px !important;
+  }
+
+  .update-time {
+    font-size: 10px !important;
+  }
+
+  .cotizacion-card canvas {
+    height: 100px !important;
+  }
+}
+/* =========================
+   🔹 AJUSTE FINO DE GRÁFICOS
+========================= */
+.cotizacion-card canvas {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 2 / 1; /* mantiene proporción visual */
+  display: block;
+  margin: 0 auto;
+}
+
+/* En móviles, achicamos un poco más */
+@media (max-width: 768px) {
+  .cotizacion-card canvas {
+    aspect-ratio: 1.8 / 1;
+  }
+}
+.cierres-historicos h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filtros-fechas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filtros {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-generar {
+  background: linear-gradient(90deg, #00b4db, #0083b0);
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.resumen-cierre {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.resumen-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.card-resumen {
+  background: #f3f3f3;
+  border-radius: 10px;
+  padding: 10px 15px;
+  min-width: 150px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card-resumen.total {
+  background: #dfffd8;
+  font-weight: bold;
+  color: #006400;
+}
+/* BOTONES DE ACCIÓN TABLA */
+td.acciones .btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    margin-right: 5px;
+    transition: all 0.25s ease;
+    display: inline-block;
+}
+
+/* Botón VER: azul claro */
+td.acciones .btn.ver {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+}
+
+td.acciones .btn.ver:hover {
+    background: linear-gradient(90deg, #00eaff, #00aaff);
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(0,198,255,0.6);
+}
+
+/* Botón EDITAR: amarillo/naranja */
+td.acciones .btn.editar {
+    background: linear-gradient(90deg, #ffc107, #ff9800);
+}
+
+td.acciones .btn.editar:hover {
+    background: linear-gradient(90deg, #ffd740, #ffb300);
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(255,193,7,0.6);
+}
+
+/* Botón BORRAR: rojo */
+td.acciones .btn.borrar {
+    background: linear-gradient(90deg, #dc3545, #c82333);
+}
+
+td.acciones .btn.borrar:hover {
+    background: linear-gradient(90deg, #e5535d, #d32f2f);
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(220,53,69,0.6);
+}
+
+
+/* === CREAR ORDEN (estilos externos) === */
+.crear-orden-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #121212;
+    color: #f0f0f0;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+}
+
+.crear-orden-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, #00e5ff, #0077ff);
+    
+    -webkit-text-fill-color: transparent;
+}
+
+/* === FORMULARIO === */
+.form-orden {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #00e5ff;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #00e5ff;
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+    outline: none;
+}
+
+/* === BOTONES === */
+.form-actions {
+  align-items: center;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.btn-guardar {
+  align-items: center;
+    background: linear-gradient(90deg, #00e5ff, #0077ff);
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-guardar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.btn-cancelar {
+    background: #222;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-cancelar:hover {
+    background: #333;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-group.full-width {
+        grid-column: 1;
+    }
+}
+/* =========================
+   PATCH: correcciones y overrides seguros
+   Pegar al final de style.css (no borra nada, solo sobreescribe lo necesario)
+========================= */
+
+/* 1) Variables centrales (no rompen nada) */
+:root{
+  --accent-1: #00eaff;
+  --accent-2: #00c6ff;
+  --accent-3: #0077ff;
+  --bg-dark-1: #121212;
+  --bg-dark-2: #1e1e2f;
+  --muted: #aaa;
+}
+
+/* 2) Evitar que la regla global button { width:100% } rompa botones de fila de acciones
+   (anulamos solo dentro de los contenedores de formulario donde queremos botones inline) */
+.form-actions,
+.footer-actions,
+.actions-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* Forzar que los botones dentro de .form-actions no ocupen 100% */
+.form-actions button,
+.form-actions a,
+.form-actions .btn {
+  width: auto !important;
+  max-width: 360px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Mantener un tamaño coherente para guardar/cancelar */
+.form-actions .btn-guardar {
+  min-width: 140px;
+  padding: 10px 20px;
+}
+
+.form-actions .btn-cancelar {
+  padding: 10px 18px;
+}
+
+/* 3) Consolidación segura de .cotizacion-card
+   Esto sobreescribe múltiples definiciones conflictivas previas y elimina el uso innecesario de !important */
+.cotizacion-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px auto;
+  max-width: 1000px;
+}
+
+.cotizacion-card {
+  background: linear-gradient(145deg, #1c1c2c, #252538);
+  color: #eaeaea;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  padding: 18px 22px;
+  width: 300px; /* valor intermedio coherente */
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(0,198,255,0.08);
+}
+
+.cotizacion-card h3 { color: var(--accent-1); font-size: 18px; margin-bottom: 8px; }
+
+/* evitando !important en canvas; si un canvas necesita forzar tamaño, hacerlo en su selector especifico */
+.cotizacion-card canvas { width: 100%; height: auto; display: block; margin: 0 auto; }
+
+/* 4) Evitar duplicados en tabla: priorizamos padding + min-width solo en .table-container */
+.table-container table,
+.table-container-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.table-container th,
+.table-container-scroll th {
+  padding: 12px 15px;
+  background: linear-gradient(90deg, var(--accent-3), var(--accent-2));
+  color: #fff;
+}
+
+/* 5) Scoped form styles: hacemos que los estilos globales de form no afecten módulos que NO queremos.
+   Dejamos las reglas globales por compatibilidad, pero damos prioridad a formularios con clase .form-orden o .site-form */
+.form-orden,
+.site-form,
+.crear-orden-container form,
+.editar-orden-form {
+  max-width: 100%;
+  background: var(--bg-dark-1);
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Inputs: prioridad para formularios scoped */
+.form-orden input,
+.form-orden textarea,
+.form-orden select,
+.site-form input,
+.site-form textarea,
+.site-form select {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+/* 6) Consolidamos media queries frecuentes reduciendo repetición */
+@media (max-width: 768px) {
+  .form-grid { grid-template-columns: 1fr !important; }
+  .cotizacion-card { width: 90% !important; max-width: 380px; padding: 14px; }
+  .table-container { padding: 10px; }
+}
+
+/* 7) Reglas de alta especificidad para evitar efectos colaterales
+   (por ejemplo, si algún botón necesita width:100% deliberadamente lo definimos en su contexto) */
+.btn.fullwidth,
+.actions-fullwidth .btn {
+  width: 100% !important;
+}
+
+/* 8) Nota útil para limpieza: buscar y reemplazar (manual)
+   - Buscar duplicados de ".cotizacion-card" y dejar solo la definición anterior.
+   - Buscar duplicados de "table { ... }" y conservar la sección .table-container.
+   - Remover usos innecesarios de !important salvo casos puntuales. 
+*/
+
+/* Fin PATCH */
