@@ -2,8 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- ✅ Necesario para que el responsive funcione en celulares -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Servicio Técnico</title>
-    <link rel="stylesheet" href="/style/style.css">
+    <!-- ✅ Forzamos actualización del CSS en caso de caché -->
+    <link rel="stylesheet" href="/style/style.css?v=<?= time() ?>">
 </head>
 <body>
 
