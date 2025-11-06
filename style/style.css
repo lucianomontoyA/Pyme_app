@@ -1275,3 +1275,72 @@ td.acciones .btn.borrar:hover {
 */
 
 /* Fin PATCH */
+/* COSAS QUE AGREGO DESPUES DE HABER CREADO EL CSS SUPLETE SEPARADO POR CARPETAS  */
+
+/* =========================
+   🔹 TABLAS RESPONSIVE
+========================= */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 20px;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* evita que se deforme */
+}
+
+.table-container th,
+.table-container td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+/* Ajustes visuales en pantallas chicas */
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: scroll;
+    }
+
+    .table-container table {
+        font-size: 14px;
+        min-width: 600px;
+    }
+
+    .table-container th,
+    .table-container td {
+        padding: 8px;
+    }
+
+    /* Botones más compactos */
+    .table-container .btn {
+        padding: 4px 6px;
+        font-size: 12px;
+    }
+}
+
+/* En pantallas muy chicas (móviles en vertical) */
+@media (max-width: 480px) {
+    .table-container table {
+        display: block;
+        overflow-x: auto;
+        min-width: 500px;
+    }
+
+    .table-container th,
+    .table-container td {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .acciones {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
