@@ -46,6 +46,7 @@ include 'partial/header.php';
                     <li><em>Órdenes Reparadas</em></li>
                     <li><em>Órdenes Finalizadas</em></li>
                     <li><em>Consultar estado de Orden</em></li>
+                    <li><em>Factura:</em> permite generar una factura imprimible de la orden finalizada.</li>
                 </ul>
             </li>
 
@@ -83,6 +84,37 @@ include 'partial/header.php';
             <strong>editar orden</strong>. Depende del flujo que el usuario quiera usar.
         </p>
 
+        <h3>🔹 Talón de ingreso</h3>
+        <p>
+            Cada vez que se crea una nueva orden, el sistema genera automáticamente un <strong>talón de ingreso</strong>.
+            Este talón incluye:
+        </p>
+        <ul>
+            <li>El <strong>nombre del cliente</strong>.</li>
+            <li>El <strong>código público de seguimiento</strong> de la orden.</li>
+            <li>La <strong>fecha de ingreso</strong> y el <strong>número de orden</strong>.</li>
+        </ul>
+        <p>
+            Se imprimen <strong>dos copias</strong>: una para el cliente y otra para el técnico o el local.  
+            Este talón sirve para consultar el estado del equipo posteriormente desde la sección de <strong>Consulta de Orden</strong>.
+        </p>
+
+        <h3>🔹 Factura de reparación</h3>
+        <p>
+            Una vez que la orden se encuentra en estado <strong>Finalizado</strong>, se habilita la opción de
+            <strong>Generar Factura</strong>. Esta factura incluye:
+        </p>
+        <ul>
+            <li>Los <strong>datos del cliente</strong>.</li>
+            <li>El <strong>detalle del trabajo realizado</strong>.</li>
+            <li>Los <strong>gastos o repuestos utilizados</strong>.</li>
+            <li>El <strong>total a pagar</strong>.</li>
+        </ul>
+        <p>
+            La factura puede <strong>imprimirse directamente</strong> desde el sistema para ser entregada al cliente
+            junto con el equipo reparado.
+        </p>
+
         <h3>🔹 Cierres diarios e históricos</h3>
         <p>
             En la sección <strong>Cierre Diario</strong> se genera el resumen de facturación del día.
@@ -107,8 +139,9 @@ include 'partial/header.php';
         </ul>
 
         <p class="final">
-            ✅ Con esto ya podés entender el funcionamiento general del sistema de gestión de órdenes
-            y sus diferentes secciones.
+            ✅ Con esto ya podés entender el funcionamiento completo del sistema:  
+            desde el ingreso de una orden, la reparación, facturación y entrega,  
+            hasta los cierres diarios e históricos.
         </p>
     </section>
 </main>
@@ -117,14 +150,15 @@ include 'partial/header.php';
 main.content {
     max-width: 900px;
     margin: 30px auto;
-    background: #000000ff;
+    background: #000;
     padding: 30px;
     border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    color: #fff;
 }
 
 .manual h2, .manual h3 {
-    color: #ffffffff;
+    color: #00c6ff;
     margin-bottom: 10px;
 }
 
@@ -143,7 +177,7 @@ main.content {
 
 .manual .final {
     font-weight: bold;
-    color: #333;
+    color: #00ff9d;
     margin-top: 20px;
 }
 </style>
