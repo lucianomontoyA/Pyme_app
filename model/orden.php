@@ -132,4 +132,43 @@ class Orden {
 
         return $conteos;
     }
+
+
+        // Cambiar solo estado y total de una orden
+    public function actualizarEstadoYTotal($id, $estado, $total) {
+        // Validar estado permitido
+        $estados_validos = ['Ingresado','En revisión','Reparado','Entregado'];
+        if (!in_array($estado, $estados_validos)) {
+            $estado = 'Ingresado';
+        }
+
+        // Asegurar que total sea numérico
+        $total = floatval($total);
+
+        $sql = "UPDATE ordenes SET estado = :estado, total = :total";
+
+        // Actualizar fechas automáticas según estado
+        if ($estado === 'En revisión') {
+            $sql .= ", fecha_revision = IF(fecha_revision IS NULL, NOW(), fecha_revision)";
+        } elseif ($estado === 'Reparado') {
+            $sql .= ", fecha_reparacion = IF(fecha_reparacion IS NULL, NOW(), fecha_reparacion)";
+        } elseif ($estado === 'Entregado') {
+            $sql .= ", fecha_finalizacion = IF(fecha_finalizacion IS NULL, NOW(), fecha_finalizacion)";
+        }
+
+        $sql .= " WHERE id = :id";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':estado' => $estado,
+            ':total' => $total,
+            ':id' => $id
+        ]);
+    }
+
+
+
+
+
+
 }

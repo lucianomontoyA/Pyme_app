@@ -31,9 +31,6 @@ $ordenes_reparadas = array_filter($ordenes, fn($o) => $o['estado'] === 'Reparado
             <th>Nombre Cliente</th>
             <th>Apellido Cliente</th>
             <th>Equipo</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Serie</th>
             <th>Problema Reportado</th>
             <th>Observaciones</th>
             <th>Estado</th>
@@ -54,9 +51,6 @@ $ordenes_reparadas = array_filter($ordenes, fn($o) => $o['estado'] === 'Reparado
                 <td><?= htmlspecialchars($cliente['nombre']) ?></td>
                 <td><?= htmlspecialchars($cliente['apellido']) ?></td>
                 <td><?= htmlspecialchars($orden['equipo']) ?></td>
-                <td><?= htmlspecialchars($orden['marca']) ?></td>
-                <td><?= htmlspecialchars($orden['modelo']) ?></td>
-                <td><?= htmlspecialchars($orden['serie']) ?></td>
                 <td><?= htmlspecialchars($orden['problema_reportado']) ?></td>
                 <td><?= htmlspecialchars($orden['observaciones']) ?></td>
                 <td><?= htmlspecialchars($orden['estado']) ?></td>
@@ -64,9 +58,10 @@ $ordenes_reparadas = array_filter($ordenes, fn($o) => $o['estado'] === 'Reparado
                 <td><?= htmlspecialchars($orden['codigo_publico']) ?></td>
                 <td><?= date("d/m/Y H:i", strtotime($orden['fecha_creacion'])) ?></td>
                   <td class="acciones">
-    <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Factura</a>
-    <a href="editar_orden.php?id=<?= $orden['id'] ?>" class="btn editar">Editar</a>
-    <a href="borrar_orden.php?id=<?= $orden['id'] ?>" class="btn borrar" onclick="return confirm('¿Seguro que deseas borrar esta orden?')">Borrar</a>
+                     <a href="cambiar_estado.php?id=<?= $orden['id'] ?>" class="btn estado">Cambiar Estado</a>
+                     <a href="editar_orden.php?id=<?= $orden['id'] ?>" class="btn editar">Editar</a>
+                     <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Factura</a>
+                     <a href="borrar_orden.php?id=<?= $orden['id'] ?>" class="btn borrar" onclick="return confirm('¿Seguro que deseas borrar esta orden?')">Borrar</a>
 </td>
             </tr>
             <?php endforeach; ?>
