@@ -7,6 +7,40 @@ include 'partial/header.php';
 
 <main class="content">
     <h2>Cómo se usa el sistema</h2>
+   <section class="manual">
+  <h2>🎯 Finalidad del sistema</h2>
+
+  <p>
+    Este sistema fue desarrollado <strong>a medida</strong> para cubrir las
+    necesidades específicas de un cliente dedicado al servicio técnico. Su propósito
+    es ofrecer al <strong>Super Admin</strong> un control integral y detallado sobre
+    todas las etapas del trabajo: desde la recepción del equipo hasta la entrega final
+    y la facturación.
+  </p>
+
+  <p>
+    El sistema permite gestionar órdenes, registrar reparaciones, generar facturas
+    automáticas y realizar cierres diarios e históricos, brindando un control riguroso
+    sobre los ingresos y la <strong>ganancia obtenida en cada orden finalizada</strong>.
+  </p>
+
+  <p>
+    Está pensado principalmente para <strong>uso interno</strong>, de manera que el
+    cliente final solo pueda consultar el estado de su orden mediante un código público,
+    sin acceder al resto de las funciones.
+  </p>
+
+  <p>
+    Cada implementación puede adaptarse según los requerimientos de cada cliente,
+    incorporando o modificando módulos y funciones de acuerdo a su tipo de negocio o
+    flujo de trabajo.
+  </p>
+
+  <p>
+    En resumen, se trata de un sistema <strong>personalizado, flexible y orientado al
+    control administrativo y operativo</strong> del servicio técnico.
+  </p>
+</section>
 
     <section class="manual">
         <p>
