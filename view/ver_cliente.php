@@ -50,34 +50,44 @@ function filtrarTabla() {
 <div class="table-container"> 
     <div class="table-container-scroll">
     <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>CUIT</th>
-                <th>Fecha de Registro</th>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>CUIT</th>
+        <th>Fecha de Registro</th>
+        <th>Acciones</th>
+    </tr>
+</thead>
+
+<tbody>
+    <?php if (!empty($clientes)): ?>
+        <?php foreach ($clientes as $cliente): ?>
+            <tr data-fecha="<?= htmlspecialchars(date("Y-m-d", strtotime($cliente['fecha_creacion']))) ?>">
+                <td><?= htmlspecialchars($cliente['nombre']) ?></td>
+                <td><?= htmlspecialchars($cliente['apellido']) ?></td>
+                <td><?= htmlspecialchars($cliente['email']) ?></td>
+                <td><?= htmlspecialchars($cliente['telefono']) ?></td>
+                <td><?= htmlspecialchars($cliente['direccion']) ?></td>
+                <td><?= htmlspecialchars($cliente['cuit']) ?></td>
+                <td><?= date("d/m/Y H:i", strtotime($cliente['fecha_creacion'])) ?></td>
+
+                <!-- 🔧 Botón Editar -->
+                <td>
+                    <a href="editar_cliente.php?id=<?= $cliente['id'] ?>" class="btn-editar">
+                        ✏️ Editar
+                    </a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($clientes)): ?>
-                <?php foreach ($clientes as $cliente): ?>
-                    <tr data-fecha="<?= htmlspecialchars(date("Y-m-d", strtotime($cliente['fecha_creacion']))) ?>">
-                        <td><?= htmlspecialchars($cliente['nombre']) ?></td>
-                        <td><?= htmlspecialchars($cliente['apellido']) ?></td>
-                        <td><?= htmlspecialchars($cliente['email']) ?></td>
-                        <td><?= htmlspecialchars($cliente['telefono']) ?></td>
-                        <td><?= htmlspecialchars($cliente['direccion']) ?></td>
-                        <td><?= htmlspecialchars($cliente['cuit']) ?></td>
-                        <td><?= date("d/m/Y H:i", strtotime($cliente['fecha_creacion'])) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr><td colspan="7">No hay clientes registrados</td></tr>
-            <?php endif; ?>
-        </tbody>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <tr><td colspan="8">No hay clientes registrados</td></tr>
+    <?php endif; ?>
+</tbody>
+
     </table>
     </div>
 </div>

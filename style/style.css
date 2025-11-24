@@ -1504,3 +1504,53 @@ td.acciones .btn.borrar:hover {
         background: linear-gradient(90deg, #00c6ff, #0072ff);
     }
 }
+
+
+/* =========================
+   🔹 TABLAS COMPACTAS
+========================= */
+
+/* Achica columnas automáticamente */
+table {
+    table-layout: fixed; /* Fuerza columnas más angostas */
+    width: 100%;
+}
+
+/* Reduce tamaño del texto */
+table th, table td {
+    font-size: 13px;       /* Antes 15px */
+    padding: 6px 8px;      /* Antes 12-15px */
+    white-space: nowrap;   /* Evita saltos raros */
+    overflow: hidden;      /* Oculta texto muy largo */
+    text-overflow: ellipsis; /* Pone "..." si se excede */
+}
+
+/* Altura más baja */
+table tr {
+    height: 32px;
+}
+
+/* Compacta tabla en pantallas grandes también */
+.table-container {
+    padding: 5px;
+}
+
+/* Para pantallas chicas: aún más compacto */
+@media (max-width: 768px) {
+    table th, table td {
+        font-size: 11px;
+        padding: 5px 6px;
+    }
+
+    table {
+        min-width: auto !important;
+    }
+}
+/* 🔥 Permitir que la columna de acciones NO se achique */
+table th.acciones,
+table td.acciones {
+    width: 1%;           /* Lo más compacto pero sin cortar botones */
+    white-space: nowrap; /* Mantiene los botones en línea */
+    overflow: visible !important; /* No los oculta */
+    text-overflow: clip !important;
+}

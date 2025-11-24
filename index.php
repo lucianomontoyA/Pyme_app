@@ -56,6 +56,16 @@ include __DIR__ . '/view/partial/header.php';
         <p class="update-time" id="actualizado">Cargando...</p>
     </div>
 
+
+
+
+
+
+
+    
+
+
+
     <!-- Bitcoin -->
     <div id="cryptoCard" class="cotizacion-card">
         <h3>₿ Bitcoin (BTC)</h3>
@@ -136,10 +146,12 @@ include __DIR__ . '/view/partial/header.php';
   }
   cargarBTC();
 
+  
+  
   // ==== Órdenes (con datos reales) ====
   const ctxOrdenes = document.getElementById('ordenesChart').getContext('2d');
   new Chart(ctxOrdenes, {
-    type: 'bar',
+    type: 'pie',
     data: {
       labels: ['Ingresado','En revisión','Reparado','Entregado'],
       datasets: [{
@@ -164,6 +176,14 @@ include __DIR__ . '/view/partial/header.php';
   window.location.href = '/view/ver_orden.php';
 });
 </script>
+
+
+
+
+
+
+
+
 
 <div class="menu-cards">
     <a href="view/crear_orden.php" class="card">
