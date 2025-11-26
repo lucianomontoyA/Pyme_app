@@ -80,6 +80,16 @@
             </div>
         </div>
 
+         <div class="dropdown">
+        <button class="dropbtn no-dropdown">
+            <a href="/view/gastos.php" class="no-dropdown-link">
+                Gastos
+            </a>
+        </button>
+    </div>
+
+
+
     <?php endif; ?>
 
     <!-- 🔹 Más -->

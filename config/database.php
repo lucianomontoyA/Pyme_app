@@ -1,8 +1,6 @@
 <?php
 // config/database.php
 
-// Incluir la variable de entorno
-
 require_once __DIR__ . '/env.php';
 
 // Configuración de la base de datos
@@ -35,6 +33,11 @@ $options = [
 // Crear la conexión PDO
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
+
+    // 🔥🔥🔥 CONFIGURAR TIMEZONE DE MYSQL A ARGENTINA 🔥🔥🔥
+  $pdo->exec("SET time_zone = '-03:00'");
+
+
 } catch (PDOException $e) {
     die("Error de conexión a la base de datos: " . $e->getMessage());
 }
