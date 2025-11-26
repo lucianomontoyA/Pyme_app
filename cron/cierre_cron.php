@@ -8,17 +8,17 @@
 // Configuración de la base de datos
 
     // Datos de PRODUCCIÓN
-   // $host = 'localhost';
-    //$db   = 'u578954353_serv_tecnico';
-   // $user = 'u578954353_root';
-   // $pass = 'Ambeloquipi1!';
-   // $charset = 'utf8mb4';
-    
     $host = 'localhost';
-    $db   = 'servicio_tecnico';
-    $user = 'root';
-    $pass = 'root';
+   $db   = 'u578954353_serv_tecnico';
+    $user = 'u578954353_root';
+    $pass = 'Ambeloquipi1!';
     $charset = 'utf8mb4';
+    
+    //$host = 'localhost';
+    //$db   = 'servicio_tecnico';
+    //$user = 'root';
+    //$pass = 'root';
+    //$charset = 'utf8mb4';
 
 
 // DSN para PDO
@@ -108,3 +108,5 @@ foreach ($resultados as $row) {
             ':total_ordenes_update' => $totales['total_ordenes'],
             ':total_recaudado_update' => $totales['total_recaudado'],
         ]);
+
+file_put_contents('cron_log.txt', "Se ejecuto\n", FILE_APPEND);
