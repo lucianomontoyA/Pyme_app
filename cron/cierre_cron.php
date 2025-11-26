@@ -52,7 +52,6 @@ $fecha_fin = date('Y-m-d 23:59:59');
 $stmt->execute([$fecha_inicio, $fecha_fin]);
 $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-var_dump($resultados);
 
 $totales = [
     'Ingresado' => 0,
