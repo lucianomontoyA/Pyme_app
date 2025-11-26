@@ -44,9 +44,18 @@ foreach ($ordenes_entregadas as $orden) {
 }
 ?>
 
-<?php include 'partial/header.php'; ?>
+<?php 
+include 'partial/header.php'; 
 
-<h2>Cierre Diario - <?= date('d/m/Y') ?></h2>
+$ahora = new DateTime();
+$finDia = new DateTime('today 23:59:59');
+$intervalo = $ahora->diff($finDia);
+
+// Formato HHMMSS sin separadores
+$restante = $intervalo->format('%H:%I:%S') . " hs";
+?>
+
+<h2>Próximo cierre diario - <?= $restante ?></h2>
 
 <div style="text-align:center; margin: 30px 0;">
     <h1 style="font-size: 48px; color: #007BFF;">$<?= number_format($total_cobrado, 2) ?></h1>
@@ -55,15 +64,8 @@ foreach ($ordenes_entregadas as $orden) {
 
 <!-- ==================== CIERRE DIARIO ==================== -->
 <section class="cierre-diario">
-    <h3>📅 Cierre Diario</h3>
-    
-    <form method="post" style="margin-bottom:20px;">
-        <p>Aca vas a poder insertar, en tu base de datos, el cierre de caja de cualquier día.</p>
-        <label for="fecha">Seleccionar fecha:</label>
-        <input type="date" id="fecha" name="fecha" required>
-        <button type="submit">Generar Cierre Diario</button>
-    </form>
-
+    <h3>📅 Órdenes del Cierre de hoy</h3>
+   
     <?php if ($totales_diario): ?>
     <div class="resultado-cierre">
         <h4>Resultados del <?= htmlspecialchars($fecha) ?></h4>
