@@ -2,7 +2,7 @@
 
 echo "entro<br>";
 
-echo "DIR vale: " .realpath( __DIR__ ). "<br>"; 
+echo "DIR vale: " . realpath( __DIR__. "/.." ). "<br>"; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mensaje = "Hola.";
 
     // === ARCHIVO ADJUNTO FIJO ===
-    $archivo_ruta = __DIR__ ."/tito.jpg";  // tu archivo
+    $archivo_ruta = realpath( __DIR__. "/.." ) . "/tito.jpg";  // tu archivo
     $archivo_nombre = basename($archivo_ruta);
 
     // Leer y codificar archivo
