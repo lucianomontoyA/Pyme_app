@@ -1,4 +1,5 @@
 <?php
+echo "entro";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $destino = trim($_POST['destino']);
@@ -16,4 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Error al enviar el mail.";
     }
+    exit;
+
+
 }
