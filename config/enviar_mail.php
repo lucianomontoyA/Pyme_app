@@ -2,7 +2,7 @@
 
 echo "entro<br>";
 
-echo "DIR vale: " . __DIR__ . "<br>"; 
+echo "DIR vale: " .realpath( __DIR__ ). "<br>"; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
