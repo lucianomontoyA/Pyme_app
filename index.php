@@ -32,6 +32,19 @@ include __DIR__ . '/view/partial/header.php';
     <h2>Bienvenido a Servicio Técnico</h2>
     <p>Usá el menú para crear o ver órdenes.</p>
 
+
+
+    <form action="config/enviar_mail.php" method="post">
+    <textarea name="destino" placeholder="Email de destino" required></textarea><br>
+    <button type="submit">Enviar mail</button>
+</form>
+
+
+
+
+
+
+
 <!-- =========================
      COTIZACIONES + ÓRDENES
 ========================= -->

@@ -1554,3 +1554,26 @@ table td.acciones {
     overflow: visible !important; /* No los oculta */
     text-overflow: clip !important;
 }
+/* =========================
+   FIX: TABLAS RESPONSIVE
+========================= */
+
+.table-container {
+    width: 100%;
+    margin: 20px auto;
+    overflow-x: auto;
+    padding: 0; /* opcional para quitar padding */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 0; /* 🔥 evita el desborde */
+    table-layout: auto; /* permite ajustar columnas */
+}
+
+th, td {
+    padding: 10px;
+    word-wrap: break-word;
+    white-space: normal; /* 🔥 evita que texto largo estire la tabla */
+}
