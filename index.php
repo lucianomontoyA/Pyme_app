@@ -25,6 +25,48 @@ foreach ($ordenes as $orden) {
     }
 }
 
+
+// ===============================
+//  MOVIMIENTOS DEL DÍA
+// ===============================
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+$hoy = date('Y-m-d');
+
+$cobrosHoy = 0.0;
+$gastosHoy = 0.0;
+$balanceHoy = 0.0;
+
+try {
+
+    // === COBROS DEL DÍA (ORDENES ENTREGADAS HOY) ===
+    $stmt = $pdo->prepare("
+        SELECT SUM(total) 
+        FROM ordenes 
+        WHERE DATE(fecha_finalizacion) = ?
+    ");
+    $stmt->execute([$hoy]);
+    $cobrosHoy = (float)($stmt->fetchColumn() ?? 0);
+
+    // === GASTOS DEL DÍA ===
+    $stmt = $pdo->prepare("
+        SELECT SUM(monto) 
+        FROM gastos 
+        WHERE fecha = ?
+    ");
+    $stmt->execute([$hoy]);
+    $gastosHoy = (float)($stmt->fetchColumn() ?? 0);
+
+    // === BALANCE ===
+    $balanceHoy = $cobrosHoy - $gastosHoy;
+
+} catch (Exception $e) {
+    // Si algo falla no rompe la pantalla
+}
+
+
+
+
 include __DIR__ . '/view/partial/header.php';
 ?>
 
@@ -33,11 +75,42 @@ include __DIR__ . '/view/partial/header.php';
     <p>Usá el menú para crear o ver órdenes.</p>
 
 
+<!-- widgets movimientos -->
+
+ <div class="movimientos-box">
+    <h3>📊 Movimientos de hoy (<?= $hoy ?>)</h3>
+
+    <div class="mov-item ingreso">
+        <span>Cobros:</span>
+        <strong>$<?= number_format($cobrosHoy, 2) ?></strong>
+    </div>
+
+    <div class="mov-item gasto">
+        <span>Gastos:</span>
+        <strong>$<?= number_format($gastosHoy, 2) ?></strong>
+    </div>
+
+    <div class="mov-item balance">
+        <span>Balance:</span>
+        <strong>$<?= number_format($balanceHoy, 2) ?></strong>
+    </div>
+</div>
+
+
 
     <form action="config/enviar_mail.php" method="post">
     <textarea name="destino" placeholder="Email de destino" required></textarea><br>
     <button type="submit">Enviar mail</button>
 </form>
+
+
+
+
+<
+
+
+
+
 
 
 
@@ -51,7 +124,7 @@ include __DIR__ . '/view/partial/header.php';
 <div class="cotizacion-container">
     <!-- Dólar Blue -->
     <div id="dolarBlue" class="cotizacion-card">
-        <h3>💵 Dólar Blue</h3>
+        <h3>💵 Dólar Oficial</h3>
         <div class="cotizacion-precios">
             <div class="precio-item">
                 <span class="label">Compra</span>
@@ -99,20 +172,32 @@ include __DIR__ . '/view/partial/header.php';
 ========================= -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // ==== Dólar Blue ====
-  fetch('https://api.bluelytics.com.ar/v2/latest')
-    .then(r => r.json())
-    .then(data => {
-      document.getElementById('compra').textContent = `$${data.blue.value_buy}`;
-      document.getElementById('venta').textContent  = `$${data.blue.value_sell}`;
-      document.getElementById('valor').textContent  = `$${data.blue.value_avg}`;
-      const ahora = new Date();
+// ==== Dólar Oficial (dolarapi.com) ====
+fetch('https://dolarapi.com/v1/dolares/oficial')
+  .then(r => r.json())
+  .then(data => {
+    const compra = data.compra ?? '--';
+    const venta  = data.venta ?? '--';
+    const promedio = (compra !== '--' && venta !== '--')
+      ? ((compra + venta) / 2).toFixed(2)
+      : '--';
+
+    document.getElementById('compra').textContent = `$${compra}`;
+    document.getElementById('venta').textContent  = `$${venta}`;
+    document.getElementById('valor').textContent  = `$${promedio}`;
+
+    if (data.fechaActualizacion) {
+      const fecha = new Date(data.fechaActualizacion);
       document.getElementById('actualizado').textContent =
-        `Actualizado a las ${ahora.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}`;
-    })
-    .catch(() => {
-      document.getElementById('dolarBlue').innerHTML = '<p>No se pudo cargar la cotización 😢</p>';
-    });
+        `Actualizado: ${fecha.toLocaleString('es-AR')}`;
+    } else {
+      document.getElementById('actualizado').textContent = 'Actualizado recientemente';
+    }
+  })
+  .catch(() => {
+    document.getElementById('dolarBlue').innerHTML =
+      '<p>No se pudo cargar la cotización 😢</p>';
+  });
 
   // ==== Bitcoin ====
   async function cargarBTC() {

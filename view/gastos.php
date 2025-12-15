@@ -26,11 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         try {
             // ⚠️ Cuando crees la tabla, reemplazá por tu INSERT real
-            /*
+            
             $stmt = $pdo->prepare("INSERT INTO gastos (tipo, descripcion, monto, fecha) VALUES (?, ?, ?, ?)");
             $stmt->execute([$tipo, $descripcion, $monto, $fecha]);
-            */
-            $success = "Gasto registrado correctamente (simulado, falta tabla en DB).";
+            
+            $success = "Gasto registrado correctamente.";
 
         } catch (Exception $e) {
             $error = $e->getMessage();

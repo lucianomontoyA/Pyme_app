@@ -77,16 +77,11 @@
             <div class="dropdown-content">
                 <a href="/view/cierre_diario.php">📅 Cierre Diario</a>
                 <a href="/view/cierres_diarios.php">📚 Cierres Históricos</a>
+                <a href="/view/gastos.php">💸 Gastos</a>
+                <a href="/view/movimientos.php">🧮 Movimientos</a>
             </div>
         </div>
 
-         <div class="dropdown">
-        <button class="dropbtn no-dropdown">
-            <a href="/view/gastos.php" class="no-dropdown-link">
-                Gastos
-            </a>
-        </button>
-    </div>
 
 
 

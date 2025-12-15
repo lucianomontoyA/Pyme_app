@@ -1577,3 +1577,117 @@ th, td {
     word-wrap: break-word;
     white-space: normal; /* 🔥 evita que texto largo estire la tabla */
 }
+.movimientos-box {
+    background: #ffffff;
+    padding: 18px 20px;
+    margin: 25px auto;
+    width: 90%;
+    max-width: 420px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    font-family: Arial, sans-serif;
+}
+
+.movimientos-box h3 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.mov-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.mov-item span {
+    opacity: 0.8;
+}
+
+/* Colores */
+.mov-item.ingreso {
+    background: #6be889;
+    border-left: 5px solid #28a745;
+}
+
+.mov-item.gasto {
+    background: #fd6e6e;
+    border-left: 5px solid #dc3545;
+}
+
+.mov-item.balance {
+    background: #78aafb;
+    border-left: 5px solid #007bff;
+}
+/* =========================
+   🔹 CIERRE DIARIO / MOVIMIENTOS
+========================= */
+.movimientos-box {
+    background: linear-gradient(145deg, #1c1c2c, #252538);
+    padding: 20px 22px;
+    margin: 30px auto;
+    width: 95%;
+    max-width: 480px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    color: #eaeaea;
+    border: 1px solid rgba(0,198,255,0.1);
+}
+
+.movimientos-box h3 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 18px;
+    color: #00eaff;
+    text-shadow: 0 0 6px rgba(0,198,255,0.4);
+}
+
+.mov-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    background: rgba(255,255,255,0.04);
+}
+
+.mov-item span {
+    opacity: 0.85;
+}
+
+/* Colores coherentes */
+.mov-item.ingreso {
+    border-left: 4px solid #28a745;
+}
+
+.mov-item.gasto {
+    border-left: 4px solid #dc3545;
+}
+
+.mov-item.balance {
+    border-left: 4px solid #007bff;
+    font-weight: bold;
+}
+
+/* Estado del día */
+.estado-dia {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Info secundaria */
+.movimientos-box small {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+}
