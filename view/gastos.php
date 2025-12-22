@@ -104,13 +104,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label for="monto">Monto</label>
     <input type="text" id="monto" name="monto" value="<?= $_POST['monto'] ?? '' ?>" required>
 
-    <label for="comprobante">Imagen del ticket / comprobante (opcional)</label>
-    <input type="file" id="comprobante" name="comprobante" accept="image/*">
-
+    <!-- Etiqueta personalizada para el input de archivo -->
     <label for="comprobante" class="file-label">
-    📷 Sacar foto o subir archivo
-</label>
+        📷 Sacar foto o subir archivo
+    </label>
 
+    <!-- Input de archivo oculto -->
     <input
         type="file"
         id="comprobante"
@@ -120,8 +119,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         style="display:none;"
     >
 
-
     <button type="submit">Cargar Gasto</button>
 </form>
+
 
 <?php include 'partial/footer.php'; ?>

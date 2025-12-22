@@ -96,7 +96,8 @@ include __DIR__ . '/view/partial/header.php';
     </div>
 </div>
 
-
+<!-- =========================
+     mail send test
 
     <form action="config/enviar_mail.php" method="post">
       <div><p>seccion de enviar mail en test</p></div>
@@ -104,7 +105,7 @@ include __DIR__ . '/view/partial/header.php';
     <button type="submit">Enviar mail</button>
 </form>
 
-
+========================= -->
 
 
 
@@ -164,6 +165,15 @@ include __DIR__ . '/view/partial/header.php';
     <div class="cotizacion-card">
         <h3>🛠 Órdenes</h3>
         <canvas id="ordenesChart"></canvas>
+        
+        <div class="ordenes-legend">
+    <span><i class="dot amarillo"></i> Ingresado</span>
+    <span><i class="dot celeste"></i> En revisión</span>
+    <span><i class="dot verde"></i> Reparado</span>
+    <span><i class="dot rojo"></i> Entregado</span>
+</div>
+
+        
         <p class="update-time">Actualizado recientemente</p>
     </div>
 </div>
