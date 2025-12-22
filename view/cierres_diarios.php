@@ -43,7 +43,7 @@ include __DIR__ . '/partial/header.php';
         <h3>📆 Cierre Histórico (por rango)</h3>
         
         <form method="post" class="filtros-fechas">
-             <p>Aca vas a poder ver Tus cierres diarios Agrupados por fechas (si no los insertaste no los veras). </p>
+             <p>Aca vas a poder ver Tus cierres diarios Agrupados por fechas </p>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
                 <div>
                     <label for="fecha_desde">Desde:</label>
@@ -78,7 +78,7 @@ include __DIR__ . '/partial/header.php';
 </main>
     <!-- ==================== HISTORIAL ==================== -->
     <section class="historial-cierres">
-        <h3>🧾 Historial de Cierres Guardados</h3>
+        <h3>🧾 Todos Los  Cierres </h3>
         <div class="table-container">
             <table>
                 <thead>

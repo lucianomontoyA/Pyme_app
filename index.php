@@ -99,6 +99,7 @@ include __DIR__ . '/view/partial/header.php';
 
 
     <form action="config/enviar_mail.php" method="post">
+      <div><p>seccion de enviar mail en test</p></div>
     <textarea name="destino" placeholder="Email de destino" required></textarea><br>
     <button type="submit">Enviar mail</button>
 </form>
@@ -106,7 +107,7 @@ include __DIR__ . '/view/partial/header.php';
 
 
 
-<
+
 
 
 
