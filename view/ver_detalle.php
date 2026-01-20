@@ -177,6 +177,14 @@ $emisor = [
 <div class="orden-container">
     <button onclick="window.print()" class="print-button">Imprimir Remito</button>
    
+   <a href="/config/enviar_mail.php?id=<?= urlencode($orden['id']) ?>"
+        class="print-button"
+        style="background:#28a745"
+    >
+    Enviar factura por mail
+    </a>
+
+
 
     <div class="remito">
         <?php for ($i = 0; $i < 2; $i++): ?>
