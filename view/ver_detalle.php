@@ -36,12 +36,7 @@ $emisor = [
 /* =========================
    Estilos Remito / PDF
 ========================= */
- h3{
-    color: black;
- }
-p{
-       color: black;
-}
+
 .orden-container {
 
     max-width: 900px;
