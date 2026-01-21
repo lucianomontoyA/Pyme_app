@@ -15,7 +15,6 @@ require_once __DIR__ . '/../model/orden.php';
 require_once __DIR__ . '/../model/cliente.php';
 
 use Dompdf\Dompdf;
-echo ("hola");
 // =======================
 // VALIDACIÓN
 // =======================

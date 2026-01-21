@@ -5,6 +5,9 @@
     <title>Factura / Remito</title>
 
     <style>
+        p{
+            color:black;
+        }
         body {
             font-family: DejaVu Sans, sans-serif;
             font-size: 13px;
