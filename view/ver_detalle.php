@@ -39,7 +39,9 @@ $emisor = [
  h3{
     color: black;
  }
-
+p{
+       color: black;
+}
 .orden-container {
 
     max-width: 900px;
