@@ -1,0 +1,17 @@
+{
+    "name": "pc/pyme_app",
+    "require": {
+        "dompdf/dompdf": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pc\\PymeApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luciano Montoya",
+            "email": "yoluchomas@hotmail.com"
+        }
+    ]
+}
