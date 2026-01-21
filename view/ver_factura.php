@@ -102,20 +102,17 @@
 
 <?php for ($i = 0; $i < 2; $i++): ?>
 
-    <div class="titulo">Remito / Factura de Servicio</div>
+    <div class="titulo">Remito  de Servicio</div>
 
     <div class="remito-copy">
 
         <!-- EMISOR -->
         <div class="remito-header">
             <h1><?= htmlspecialchars($emisor['nombre']) ?></h1>
-            <p><strong>CUIT:</strong> <?= htmlspecialchars($emisor['cuit']) ?></p>
+            
             <p><?= htmlspecialchars($emisor['direccion']) ?></p>
             <p><?= htmlspecialchars($emisor['condicion_iva']) ?></p>
-            <p>
-                Tel: <?= htmlspecialchars($emisor['telefono']) ?> |
-                Email: <?= htmlspecialchars($emisor['email']) ?>
-            </p>
+            
         </div>
 
         <!-- CLIENTE -->
