@@ -22,7 +22,7 @@
         }
 
         .remito-copy {
-            border: 2px solid #333;
+            border: 2px solid #000000;
             padding: 20px;
             border-radius: 8px;
             page-break-inside: avoid;
@@ -51,7 +51,7 @@
         .section h3 {
             margin: 0 0 6px 0;
             font-size: 14px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #000000;
             padding-bottom: 4px;
         }
 
@@ -75,7 +75,7 @@
 
         hr {
             border: none;
-            border-top: 1px dashed #999;
+            border-top: 1px dashed #000000;
             margin: 15px 0;
         }
 
