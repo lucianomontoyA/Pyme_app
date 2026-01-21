@@ -1,10 +1,10 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-ini_set('log_errors', 1);
-ini_set('error_log', __DIR__ . '/error_log');
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//ini_set('log_errors', 1);
+//ini_set('error_log', __DIR__ . '/error_log');
+//error_reporting(E_ALL);
 
 require_once __DIR__ . '/../config/auth.php';
 checkRole(['superadmin']);
@@ -15,7 +15,7 @@ require_once __DIR__ . '/../model/orden.php';
 require_once __DIR__ . '/../model/cliente.php';
 
 use Dompdf\Dompdf;
-
+echo ("hola");
 // =======================
 // VALIDACIÓN
 // =======================
@@ -101,8 +101,8 @@ $cuerpo .= "--$boundary--";
 // =======================
 // ENVIAR
 // =======================
-//if (mail($destino, $asunto, $cuerpo, $headers)) {
-//    echo "✅ Factura enviada correctamente a $destino";
-//} else {
-//    echo "❌ Error al enviar la factura";
-///}
+if (mail($destino, $asunto, $cuerpo, $headers)) {
+    echo "✅ Factura enviada correctamente a $destino";
+} else {
+    echo "❌ Error al enviar la factura";
+}
