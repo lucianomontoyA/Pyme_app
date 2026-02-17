@@ -183,10 +183,7 @@ include 'partial/header.php';
             <strong><?= $cantidadOrdenesHoy ?></strong>
         </div>
 
-        <div class="mov-item">
-            <span>Promedio por orden</span>
-            <strong>$<?= number_format($promedioPorOrdenHoy, 2) ?></strong>
-        </div>
+       
 
         <div class="mov-item">
             <span>Pendientes</span>
@@ -198,11 +195,7 @@ include 'partial/header.php';
             <strong><?= $ordenesEnRevision ?></strong>
         </div>
 
-        <div class="mov-item mes">
-            <span>Balance del mes</span>
-            <strong>$<?= number_format($balanceMes, 2) ?></strong>
-        </div>
-
+       
     </div>
 
     <div class="estado-dia">

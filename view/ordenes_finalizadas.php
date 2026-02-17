@@ -120,11 +120,9 @@ function filtrarTabla() {
     <td><?= htmlspecialchars($orden['fecha_finalizacion'] ?? '–') ?></td>
 
     <td class="acciones">
-        <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Factura</a>
+        <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Remito</a>
         <a href="editar_orden.php?id=<?= $orden['id'] ?>" class="btn editar">Editar</a>
-        <a href="borrar_orden.php?id=<?= $orden['id'] ?>" class="btn borrar"
-           onclick="return confirm('¿Seguro que deseas borrar esta orden?')">Borrar</a>
-    </td>
+            </td>
 </tr>
 <?php endforeach; ?>
 <?php else : ?>

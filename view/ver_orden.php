@@ -138,7 +138,7 @@ function filtrarTabla() {
                     
                     <a href="cambiar_estado.php?id=<?= $orden['id'] ?>" class="btn estado">Cambiar Estado</a>
                     <a href="editar_orden.php?id=<?= $orden['id'] ?>" class="btn editar">Editar</a>
-                     <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Factura</a>
+                     <a href="ver_detalle.php?id=<?= $orden['id'] ?>" class="btn ver">Remito</a>
                     <a href="borrar_orden.php?id=<?= $orden['id'] ?>" class="btn borrar" onclick="return confirm('¿Seguro que deseas borrar esta orden?')">Borrar</a>
                      </td>
 

@@ -1722,3 +1722,42 @@ th, td {
 .dot.celeste  { background-color: #33b5e5; }
 .dot.verde    { background-color: #00C851; }
 .dot.rojo     { background-color: #ff4444; }
+
+/* ===== TABLAS CRM ===== */
+
+.table-container table{
+    width:100%;
+    table-layout:fixed; /* CLAVE: evita que la tabla crezca */
+    border-collapse: collapse;
+}
+
+/* ancho de columnas CLIENTES */
+.table-container th:nth-child(1){width:12%;} /* Nombre */
+.table-container th:nth-child(2){width:12%;} /* Apellido */
+.table-container th:nth-child(3){width:18%;} /* Email */
+.table-container th:nth-child(4){width:12%;} /* Tel */
+.table-container th:nth-child(5){width:18%;} /* Dirección */
+.table-container th:nth-child(6){width:12%;} /* CUIT */
+.table-container th:nth-child(7){width:10%;} /* Fecha */
+.table-container th:nth-child(8){width:12%;} /* Acciones */
+
+/* celdas */
+.table-container td,
+.table-container th{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    padding:8px;
+    font-size:13px;
+}
+
+/* filas más compactas */
+.table-container tr{
+    height:40px;
+}
+
+/* hover bonito */
+.table-container tbody tr:hover{
+    background:#0905eb;
+}
+

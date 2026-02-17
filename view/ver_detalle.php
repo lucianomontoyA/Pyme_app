@@ -209,7 +209,7 @@ hr {
     </button>
     <button class="print-button success"
         onclick="window.location.href='/config/enviar_mail.php?id=<?= urlencode($orden['id']) ?>'">
-         Enviar factura por mail
+         Enviar Remito por mail
     </button>
     <?php for ($i = 0; $i < 2; $i++): ?>
     <div class="remito-copy <?= $i === 1 ? 'print-only' : '' ?>">

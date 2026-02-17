@@ -76,42 +76,7 @@ include __DIR__ . '/partial/header.php';
 
     
 </main>
-    <!-- ==================== HISTORIAL ==================== -->
-    <section class="historial-cierres">
-        <h3>🧾 Todos Los  Cierres </h3>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Ingresadas</th>
-                        <th>En revisión</th>
-                        <th>Reparadas</th>
-                        <th>Entregadas</th>
-                        <th>Total Órdenes</th>
-                        <th>Total Recaudado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if(!empty($historial)): ?>
-                        <?php foreach($historial as $cierre): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($cierre['fecha']) ?></td>
-                                <td><?= $cierre['ordenes_ingresadas'] ?></td>
-                                <td><?= $cierre['ordenes_en_revision'] ?></td>
-                                <td><?= $cierre['ordenes_reparadas'] ?></td>
-                                <td><?= $cierre['ordenes_entregadas'] ?></td>
-                                <td><?= $cierre['total_ordenes'] ?></td>
-                                <td>$<?= number_format($cierre['total_recaudado'], 2) ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr><td colspan="7">No hay cierres registrados.</td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </section>
+   
 
    
 
